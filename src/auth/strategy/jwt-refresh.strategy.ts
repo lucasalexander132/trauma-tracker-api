@@ -6,7 +6,7 @@ import { Request } from 'express';
 import { AuthService } from '../auth.service';
 
 interface TokenPayload {
-    sub: number;
+    sub: string;
 }
 
 @Injectable()

@@ -8,4 +8,14 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User'
+export type * from './models/Session'
+export type * from './models/UserSettings'
+export type * from './models/Event'
+export type * from './models/Tag'
+export type * from './models/EventTag'
+export type * from './models/Attachment'
+export type * from './models/Report'
+export type * from './models/Resource'
+export type * from './models/UserResource'
+export type * from './models/InsightCache'
 export type * from './commonInputTypes'

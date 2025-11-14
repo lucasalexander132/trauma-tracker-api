@@ -15,9 +15,315 @@ datasource db {
 }
 
 model User {
-  id  Int  @id @default(autoincrement())
+  id            String    @id @default(cuid())
   username  String  @unique
+  email         String    @unique
   hash String
   createdAt DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLoginAt   DateTime?
   refreshToken String?
+
+  // Profile
+  displayName   String?
+  timezone      String    @default("UTC")
+  locale        String    @default("en")
+
+  // Authentication
+  emailVerified Boolean   @default(false)
+  isActive      Boolean   @default(true)
+
+  // OAuth
+  oauthProvider String?   // 'google' | 'apple'
+  oauthId       String?
+
+  // Relations
+  events        Event[]
+  tags          Tag[]
+  settings      UserSettings?
+  sessions      Session[]
+  reports       Report[]
+  resources     UserResource[]
+  
+  @@index([email])
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  refreshToken String   @unique
+  deviceId     String?
+  deviceName   String?
+  
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  lastUsedAt   DateTime @default(now())
+  
+  @@index([userId])
+  @@index([refreshToken])
+  @@map("sessions")
+}
+
+model UserSettings {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Notification preferences
+  enableNotifications   Boolean  @default(true)
+  followUpEnabled       Boolean  @default(true)
+  followUpDelayMinutes  Int      @default(60)
+  quietHoursStart       String?  // "22:00"
+  quietHoursEnd         String?  // "08:00"
+  
+  // Privacy
+  analyticsConsent      Boolean  @default(false)
+  crashReportsConsent   Boolean  @default(true)
+  
+  // UI preferences
+  intensityMethod       String   @default("tap_counter") // 'tap_counter' | 'squeeze' | 'swipe' | 'breathe'
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  @@map("user_settings")
+}
+
+// ============================================
+// TRAUMA EVENTS
+// ============================================
+
+model Event {
+  id                String    @id @default(cuid())
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Encrypted content blob (E2E encrypted)
+  encryptedContent  String    @db.Text
+  
+  // Metadata (unencrypted for querying)
+  timestamp         DateTime  @default(now())
+  
+  // Intensity tracking
+  intensityMethod   String    // 'tap_counter' | 'squeeze' | etc.
+  intensityValue    Int       // Raw value (tap count, duration, etc.)
+  intensityRating   Int?      // 1-10 scale (if provided in follow-up)
+  
+  // Follow-up status
+  hasFollowUp       Boolean   @default(false)
+  followUpAt        DateTime?
+  followUpCompleted Boolean   @default(false)
+  
+  // Sync metadata
+  isLocal           Boolean   @default(false) // True if only exists locally
+  syncedAt          DateTime?
+  version           Int       @default(1)     // For conflict resolution
+  
+  // Soft delete (for conflict resolution)
+  deletedAt         DateTime?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  // Relations
+  eventTags         EventTag[]
+  attachments       Attachment[]
+  
+  @@index([userId, timestamp(sort: Desc)])
+  @@index([userId, deletedAt])
+  @@map("events")
+}
+
+// ============================================
+// TAGS SYSTEM
+// ============================================
+
+model Tag {
+  id          String    @id @default(cuid())
+  userId      String?   // Null for system tags
+  user        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Tag properties
+  name        String
+  icon        String    // Icon identifier (e.g., 'heart', 'bolt')
+  color       String    // Hex color code
+  category    String    // 'response' | 'emotion' | 'context' | 'custom'
+  
+  // System vs custom
+  isSystem    Boolean   @default(false)
+  
+  // i18n key for system tags
+  i18nKey     String?
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relations
+  eventTags   EventTag[]
+  
+  @@unique([userId, name]) // User can't have duplicate tag names
+  @@index([userId])
+  @@map("tags")
+}
+
+model EventTag {
+  id        String   @id @default(cuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  tagId     String
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  
+  @@unique([eventId, tagId])
+  @@index([eventId])
+  @@index([tagId])
+  @@map("event_tags")
+}
+
+// ============================================
+// ATTACHMENTS (Voice Notes, Photos) // Potentially unused
+// ============================================
+
+model Attachment {
+  id               String   @id @default(cuid())
+  eventId          String
+  event            Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  
+  type             String   // 'voice' | 'photo'
+  
+  // Encrypted file info
+  encryptedFileUrl String   // S3 URL or base64 data URI
+  encryptedSize    Int      // File size in bytes
+  mimeType         String
+  
+  createdAt        DateTime @default(now())
+  
+  @@index([eventId])
+  @@map("attachments")
+}
+
+// ============================================
+// REPORTS // Potential V2
+// ============================================
+
+model Report {
+  id               String    @id @default(cuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Report metadata
+  title            String?
+  description      String?
+  dateRangeStart   DateTime
+  dateRangeEnd     DateTime
+  
+  // Content (encrypted)
+  encryptedContent String    @db.Text
+  
+  // Sharing
+  shareToken       String    @unique
+  passwordHash     String?   // Optional password protection
+  expiresAt        DateTime
+  isRevoked        Boolean   @default(false)
+  
+  // Analytics (optional)
+  viewCount        Int       @default(0)
+  lastViewedAt     DateTime?
+  
+  createdAt        DateTime  @default(now())
+  
+  @@index([userId])
+  @@index([shareToken])
+  @@index([expiresAt])
+  @@map("reports")
+}
+
+// ============================================
+// RESOURCES & EDUCATION
+// ============================================
+
+model Resource {
+  id          String         @id @default(cuid())
+  
+  // Content
+  type        String         // 'worksheet' | 'article' | 'crisis' | 'technique'
+  title       String
+  description String?
+  content     String         @db.Text
+  
+  // Categorization
+  category    String         // 'grounding' | 'understanding' | 'coping' | etc.
+  tags        String[]       // Array of relevant tags
+  
+  // i18n
+  locale      String         @default("en")
+  
+  // Ordering
+  order       Int            @default(0)
+  
+  // Metadata
+  author      String?
+  sourceUrl   String?
+  
+  isActive    Boolean        @default(true)
+  
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  
+  // Relations
+  userResources UserResource[]
+  
+  @@index([type, category])
+  @@map("resources")
+}
+
+model UserResource {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resourceId  String
+  resource    Resource  @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  
+  // Tracking
+  completed   Boolean   @default(false)
+  favorite    Boolean   @default(false)
+  
+  // For worksheets: encrypted responses
+  encryptedResponses String? @db.Text
+  
+  lastAccessedAt DateTime @default(now())
+  createdAt      DateTime @default(now())
+  
+  @@unique([userId, resourceId])
+  @@index([userId])
+  @@map("user_resources")
+}
+
+// ============================================
+// ANALYTICS & PATTERNS (Computed)
+// ============================================
+
+// Note: These are computed on-demand, not stored
+// But we can cache results here for performance
+
+model InsightCache {
+  id        String   @id @default(cuid())
+  userId    String
+  
+  type      String   // 'patterns' | 'statistics' | 'calendar'
+  period    String   // 'week' | 'month' | 'year' | 'all'
+  
+  data      Json     // Computed insight data
+  
+  createdAt DateTime @default(now())
+  expiresAt DateTime // Cache TTL
+  
+  @@unique([userId, type, period])
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("insight_cache")
 }
