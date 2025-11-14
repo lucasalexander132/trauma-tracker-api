@@ -1,0 +1,29 @@
+@host = http://localhost:5005
+@username = Lucas
+
+### Post Create User
+POST {{host}}/auth/signup
+Content-Type: application/json
+
+{
+    "username": "Lucas12345",
+    "password": "Password1!"
+}
+
+### Post Signin User
+POST {{host}}/auth/signin
+Content-Type: application/json
+
+{
+    "username": "Lucas12345",
+    "password": "Password1!"
+}
+
+### Get Specific User
+GET {{host}}/auth/{{username}}
+
+### Get User that doesn't exist
+GET {{host}}/auth/{{username}}Hi
+
+### Get Me
+Get {{host}}/auth/me
