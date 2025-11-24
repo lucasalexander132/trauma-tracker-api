@@ -52,8 +52,10 @@ export const ModelName = {
   Session: 'Session',
   UserSettings: 'UserSettings',
   Event: 'Event',
+  Section: 'Section',
   Tag: 'Tag',
   EventTag: 'EventTag',
+  SectionTag: 'SectionTag',
   Attachment: 'Attachment',
   Report: 'Report',
   Resource: 'Resource',
@@ -152,6 +154,18 @@ export const EventScalarFieldEnum = {
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
 
 
+export const SectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  taggable: 'taggable',
+  color: 'color',
+  userId: 'userId'
+} as const
+
+export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeof SectionScalarFieldEnum]
+
+
 export const TagScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -176,6 +190,16 @@ export const EventTagScalarFieldEnum = {
 } as const
 
 export type EventTagScalarFieldEnum = (typeof EventTagScalarFieldEnum)[keyof typeof EventTagScalarFieldEnum]
+
+
+export const SectionTagScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  tagId: 'tagId',
+  createdAt: 'createdAt'
+} as const
+
+export type SectionTagScalarFieldEnum = (typeof SectionTagScalarFieldEnum)[keyof typeof SectionTagScalarFieldEnum]
 
 
 export const AttachmentScalarFieldEnum = {

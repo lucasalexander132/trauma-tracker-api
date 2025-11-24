@@ -37,6 +37,11 @@ export type UserSettings = Prisma.UserSettingsModel
  */
 export type Event = Prisma.EventModel
 /**
+ * Model Section
+ * 
+ */
+export type Section = Prisma.SectionModel
+/**
  * Model Tag
  * 
  */
@@ -46,6 +51,11 @@ export type Tag = Prisma.TagModel
  * 
  */
 export type EventTag = Prisma.EventTagModel
+/**
+ * Model SectionTag
+ * 
+ */
+export type SectionTag = Prisma.SectionTagModel
 /**
  * Model Attachment
  * 

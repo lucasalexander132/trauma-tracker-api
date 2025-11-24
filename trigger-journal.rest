@@ -27,4 +27,20 @@ GET {{host}}/auth/{{username}}
 GET {{host}}/auth/{{username}}Hi
 
 ### Get Me
-Get {{host}}/auth/me
+GET {{host}}/auth/me
+
+
+### Post Entry
+POST {{host}}/user/entries
+Content-Type: application/json
+
+{
+    "eventTags": [{"category": "response", "color": "--color-Pumpkin", "icon": "drop", "isSystem": true, "name": "Fight"}, {"color": "--color-Olivine", "icon": "hand", "name": "Shame"}, {"color": "--color-Sunglow", "icon": "home", "name": "Family"}, {"color": "--color-Olivine", "icon": "cloud", "name": "Numbness"}, {"category": "response", "color": "--color-Olivine", "icon": "address", "isSystem": false, "name": "Become Hobo"}, {"color": "--color-Charcoal", "icon": "mask", "name": "Head"}],
+    "intensity": {"intensityMethod": "color_slider", "intensityRating": "Blistering", "intensityValue": 100}
+}
+
+### Get Tags
+GET {{host}}/user/tags
+
+### Get Sections
+GET {{host}}/user/sections

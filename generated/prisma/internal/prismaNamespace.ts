@@ -393,8 +393,10 @@ export const ModelName = {
   Session: 'Session',
   UserSettings: 'UserSettings',
   Event: 'Event',
+  Section: 'Section',
   Tag: 'Tag',
   EventTag: 'EventTag',
+  SectionTag: 'SectionTag',
   Attachment: 'Attachment',
   Report: 'Report',
   Resource: 'Resource',
@@ -415,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "userSettings" | "event" | "tag" | "eventTag" | "attachment" | "report" | "resource" | "userResource" | "insightCache"
+    modelProps: "user" | "session" | "userSettings" | "event" | "section" | "tag" | "eventTag" | "sectionTag" | "attachment" | "report" | "resource" | "userResource" | "insightCache"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -715,6 +717,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Section: {
+      payload: Prisma.$SectionPayload<ExtArgs>
+      fields: Prisma.SectionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SectionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SectionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>
+        }
+        findFirst: {
+          args: Prisma.SectionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SectionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>
+        }
+        findMany: {
+          args: Prisma.SectionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>[]
+        }
+        create: {
+          args: Prisma.SectionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>
+        }
+        createMany: {
+          args: Prisma.SectionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SectionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>[]
+        }
+        delete: {
+          args: Prisma.SectionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>
+        }
+        update: {
+          args: Prisma.SectionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>
+        }
+        deleteMany: {
+          args: Prisma.SectionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SectionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SectionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>[]
+        }
+        upsert: {
+          args: Prisma.SectionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionPayload>
+        }
+        aggregate: {
+          args: Prisma.SectionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSection>
+        }
+        groupBy: {
+          args: Prisma.SectionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SectionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SectionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SectionCountAggregateOutputType> | number
+        }
+      }
+    }
     Tag: {
       payload: Prisma.$TagPayload<ExtArgs>
       fields: Prisma.TagFieldRefs
@@ -860,6 +936,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.EventTagCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.EventTagCountAggregateOutputType> | number
+        }
+      }
+    }
+    SectionTag: {
+      payload: Prisma.$SectionTagPayload<ExtArgs>
+      fields: Prisma.SectionTagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SectionTagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SectionTagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>
+        }
+        findFirst: {
+          args: Prisma.SectionTagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SectionTagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>
+        }
+        findMany: {
+          args: Prisma.SectionTagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>[]
+        }
+        create: {
+          args: Prisma.SectionTagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>
+        }
+        createMany: {
+          args: Prisma.SectionTagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SectionTagCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>[]
+        }
+        delete: {
+          args: Prisma.SectionTagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>
+        }
+        update: {
+          args: Prisma.SectionTagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>
+        }
+        deleteMany: {
+          args: Prisma.SectionTagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SectionTagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SectionTagUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>[]
+        }
+        upsert: {
+          args: Prisma.SectionTagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SectionTagPayload>
+        }
+        aggregate: {
+          args: Prisma.SectionTagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSectionTag>
+        }
+        groupBy: {
+          args: Prisma.SectionTagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SectionTagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SectionTagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SectionTagCountAggregateOutputType> | number
         }
       }
     }
@@ -1347,6 +1497,18 @@ export const EventScalarFieldEnum = {
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
 
 
+export const SectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  taggable: 'taggable',
+  color: 'color',
+  userId: 'userId'
+} as const
+
+export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeof SectionScalarFieldEnum]
+
+
 export const TagScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -1371,6 +1533,16 @@ export const EventTagScalarFieldEnum = {
 } as const
 
 export type EventTagScalarFieldEnum = (typeof EventTagScalarFieldEnum)[keyof typeof EventTagScalarFieldEnum]
+
+
+export const SectionTagScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  tagId: 'tagId',
+  createdAt: 'createdAt'
+} as const
+
+export type SectionTagScalarFieldEnum = (typeof SectionTagScalarFieldEnum)[keyof typeof SectionTagScalarFieldEnum]
 
 
 export const AttachmentScalarFieldEnum = {
@@ -1666,8 +1838,10 @@ export type GlobalOmitConfig = {
   session?: Prisma.SessionOmit
   userSettings?: Prisma.UserSettingsOmit
   event?: Prisma.EventOmit
+  section?: Prisma.SectionOmit
   tag?: Prisma.TagOmit
   eventTag?: Prisma.EventTagOmit
+  sectionTag?: Prisma.SectionTagOmit
   attachment?: Prisma.AttachmentOmit
   report?: Prisma.ReportOmit
   resource?: Prisma.ResourceOmit
