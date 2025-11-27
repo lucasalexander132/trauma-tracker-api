@@ -21,3 +21,63 @@ export * from './enums';
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
+/**
+ * Model UserSettings
+ * 
+ */
+export type UserSettings = Prisma.UserSettingsModel
+/**
+ * Model Event
+ * 
+ */
+export type Event = Prisma.EventModel
+/**
+ * Model Section
+ * 
+ */
+export type Section = Prisma.SectionModel
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model EventTag
+ * 
+ */
+export type EventTag = Prisma.EventTagModel
+/**
+ * Model SectionTag
+ * 
+ */
+export type SectionTag = Prisma.SectionTagModel
+/**
+ * Model Attachment
+ * 
+ */
+export type Attachment = Prisma.AttachmentModel
+/**
+ * Model Report
+ * 
+ */
+export type Report = Prisma.ReportModel
+/**
+ * Model Resource
+ * 
+ */
+export type Resource = Prisma.ResourceModel
+/**
+ * Model UserResource
+ * 
+ */
+export type UserResource = Prisma.UserResourceModel
+/**
+ * Model InsightCache
+ * 
+ */
+export type InsightCache = Prisma.InsightCacheModel
