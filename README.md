@@ -8,6 +8,7 @@ NestJS-based REST API for the Trauma Tracker mobile application.
 - Prisma ORM
 - PostgreSQL
 - Passport.js (JWT + OAuth)
+- Docker
 
 ## Getting Started
 
@@ -16,10 +17,7 @@ NestJS-based REST API for the Trauma Tracker mobile application.
 - PostgreSQL 15+
 
 ### Installation
-```bash
-npm install
-npm run dev
-```
+// I'm going to get back to this with a more in depth guide since configuring the DB for first go can be a pain
 
 # Run migrations
 npx prisma migrate dev
