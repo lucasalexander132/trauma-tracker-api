@@ -9,14 +9,6 @@ import { Response } from 'express';
 import { Request } from 'express';
 import { User } from 'generated/prisma/client';
 
-export const USER_SELECT = {
-  id: true,
-  username: true,
-  hash: true,
-  refreshToken: true,
-  createdAt: true,
-};
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -79,6 +71,7 @@ export class AuthService {
       const createdUser = await this.prisma.user.create({
         data: {
           username: dto.username,
+          email: dto.email,
           hash,
         },
       });
@@ -128,13 +121,12 @@ export class AuthService {
 
   async veryifyUserRefreshToken(
     RefreshToken: string,
-    userId: number,
+    userId: string,
   ): Promise<Omit<User, 'hash'>> {
     const dbUser = await this.prisma.user.findUnique({
       where: {
         id: userId,
-      },
-      select: USER_SELECT,
+      }
     });
     if (!dbUser) throw new ForbiddenException('No user with that id');
     if (!dbUser.refreshToken)
@@ -145,11 +137,37 @@ export class AuthService {
     );
     if (!refreshTokenMatches)
       throw new ForbiddenException('Refresh token is not valid');
+    const {
+      id,
+      username,
+      createdAt,
+      refreshToken,
+      email,
+      updatedAt,
+      lastLoginAt,
+      displayName,
+      timezone,
+      locale,
+      emailVerified,
+      isActive,
+      oauthProvider,
+      oauthId
+    } = dbUser;
     return {
-      id: dbUser.id,
-      username: dbUser.username,
-      createdAt: dbUser.createdAt,
-      refreshToken: dbUser.refreshToken
+      id,
+      username,
+      createdAt,
+      refreshToken,
+      email,
+      updatedAt,
+      lastLoginAt,
+      displayName,
+      timezone,
+      locale,
+      emailVerified,
+      isActive,
+      oauthProvider,
+      oauthId,
     };
   }
 }

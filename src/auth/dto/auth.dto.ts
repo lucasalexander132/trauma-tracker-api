@@ -8,6 +8,12 @@ export class AuthDto {
 
     @IsString()
     @IsNotEmpty()
+    @MinLength(3)
+    @IsEmail()
+    email: string;
+
+    @IsString()
+    @IsNotEmpty()
     @MinLength(6)
     @MaxLength(20)
     @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, {

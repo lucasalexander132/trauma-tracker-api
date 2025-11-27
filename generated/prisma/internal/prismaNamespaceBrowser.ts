@@ -48,7 +48,19 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Session: 'Session',
+  UserSettings: 'UserSettings',
+  Event: 'Event',
+  Section: 'Section',
+  Tag: 'Tag',
+  EventTag: 'EventTag',
+  SectionTag: 'SectionTag',
+  Attachment: 'Attachment',
+  Report: 'Report',
+  Resource: 'Resource',
+  UserResource: 'UserResource',
+  InsightCache: 'InsightCache'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,12 +82,207 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   username: 'username',
+  email: 'email',
   hash: 'hash',
   createdAt: 'createdAt',
-  refreshToken: 'refreshToken'
+  updatedAt: 'updatedAt',
+  lastLoginAt: 'lastLoginAt',
+  refreshToken: 'refreshToken',
+  displayName: 'displayName',
+  timezone: 'timezone',
+  locale: 'locale',
+  emailVerified: 'emailVerified',
+  isActive: 'isActive',
+  oauthProvider: 'oauthProvider',
+  oauthId: 'oauthId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  refreshToken: 'refreshToken',
+  deviceId: 'deviceId',
+  deviceName: 'deviceName',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  lastUsedAt: 'lastUsedAt'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const UserSettingsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  enableNotifications: 'enableNotifications',
+  followUpEnabled: 'followUpEnabled',
+  followUpDelayMinutes: 'followUpDelayMinutes',
+  quietHoursStart: 'quietHoursStart',
+  quietHoursEnd: 'quietHoursEnd',
+  analyticsConsent: 'analyticsConsent',
+  crashReportsConsent: 'crashReportsConsent',
+  intensityMethod: 'intensityMethod',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserSettingsScalarFieldEnum = (typeof UserSettingsScalarFieldEnum)[keyof typeof UserSettingsScalarFieldEnum]
+
+
+export const EventScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  encryptedContent: 'encryptedContent',
+  timestamp: 'timestamp',
+  intensityMethod: 'intensityMethod',
+  intensityValue: 'intensityValue',
+  intensityRating: 'intensityRating',
+  hasFollowUp: 'hasFollowUp',
+  followUpAt: 'followUpAt',
+  followUpCompleted: 'followUpCompleted',
+  isLocal: 'isLocal',
+  syncedAt: 'syncedAt',
+  version: 'version',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+export const SectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  taggable: 'taggable',
+  color: 'color',
+  sortOrder: 'sortOrder',
+  userId: 'userId'
+} as const
+
+export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeof SectionScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  icon: 'icon',
+  color: 'color',
+  category: 'category',
+  sortOrder: 'sortOrder',
+  isSystem: 'isSystem',
+  i18nKey: 'i18nKey',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const EventTagScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  tagId: 'tagId',
+  createdAt: 'createdAt'
+} as const
+
+export type EventTagScalarFieldEnum = (typeof EventTagScalarFieldEnum)[keyof typeof EventTagScalarFieldEnum]
+
+
+export const SectionTagScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  tagId: 'tagId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type SectionTagScalarFieldEnum = (typeof SectionTagScalarFieldEnum)[keyof typeof SectionTagScalarFieldEnum]
+
+
+export const AttachmentScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  type: 'type',
+  encryptedFileUrl: 'encryptedFileUrl',
+  encryptedSize: 'encryptedSize',
+  mimeType: 'mimeType',
+  createdAt: 'createdAt'
+} as const
+
+export type AttachmentScalarFieldEnum = (typeof AttachmentScalarFieldEnum)[keyof typeof AttachmentScalarFieldEnum]
+
+
+export const ReportScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  description: 'description',
+  dateRangeStart: 'dateRangeStart',
+  dateRangeEnd: 'dateRangeEnd',
+  encryptedContent: 'encryptedContent',
+  shareToken: 'shareToken',
+  passwordHash: 'passwordHash',
+  expiresAt: 'expiresAt',
+  isRevoked: 'isRevoked',
+  viewCount: 'viewCount',
+  lastViewedAt: 'lastViewedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
+
+
+export const ResourceScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  description: 'description',
+  content: 'content',
+  category: 'category',
+  tags: 'tags',
+  locale: 'locale',
+  order: 'order',
+  author: 'author',
+  sourceUrl: 'sourceUrl',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ResourceScalarFieldEnum = (typeof ResourceScalarFieldEnum)[keyof typeof ResourceScalarFieldEnum]
+
+
+export const UserResourceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  resourceId: 'resourceId',
+  completed: 'completed',
+  favorite: 'favorite',
+  encryptedResponses: 'encryptedResponses',
+  lastAccessedAt: 'lastAccessedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type UserResourceScalarFieldEnum = (typeof UserResourceScalarFieldEnum)[keyof typeof UserResourceScalarFieldEnum]
+
+
+export const InsightCacheScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  period: 'period',
+  data: 'data',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt'
+} as const
+
+export type InsightCacheScalarFieldEnum = (typeof InsightCacheScalarFieldEnum)[keyof typeof InsightCacheScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -84,6 +291,13 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -100,4 +314,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
