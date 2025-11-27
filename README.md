@@ -8,14 +8,12 @@ NestJS-based REST API for the Trauma Tracker mobile application.
 - Prisma ORM
 - PostgreSQL
 - Passport.js (JWT + OAuth)
-- Bull (Queue management)
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js 18+
 - PostgreSQL 15+
-- Redis (for queues)
 
 ### Installation
 \`\`\`bash
@@ -32,28 +30,7 @@ createdb trauma_tracker
 npx prisma migrate dev
 
 # Seed database
-npm run seed
-\`\`\`
-
-## Project Structure
-\`\`\`
-/src
-  /auth
-  /users
-  /events
-  /tags
-  /insights
-  /reports
-  /resources
-  /notifications
-  /storage
-  /common
-  /config
-  /prisma
-\`\`\`
-
-## API Documentation
-Once running, visit: http://localhost:3000/api/docs
+Running npm run start:dev will automatically seed the database if it needs it
 
 ## Environment Variables
 See `.env.example` for required variables.
