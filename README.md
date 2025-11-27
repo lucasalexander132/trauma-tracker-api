@@ -16,15 +16,10 @@ NestJS-based REST API for the Trauma Tracker mobile application.
 - PostgreSQL 15+
 
 ### Installation
-\`\`\`bash
+```bash
 npm install
 npm run dev
-\`\`\`
-
-### Database Setup
-\`\`\`bash
-# Create database
-createdb trauma_tracker
+```
 
 # Run migrations
 npx prisma migrate dev
