@@ -61,15 +61,6 @@ export class PrismaService extends PrismaClient {
       })
     }
     
-    // for (const tag of allTags) {
-    //   await this.tag.create({
-    //     data: {
-    //       ...tag,
-    //       userId: null
-    //     },
-    //   });
-    // }
-    
     console.log(`✅  Seeded ${allTags.length} system tags`);
   }
 }

@@ -27,6 +27,7 @@ export type SectionTagMinAggregateOutputType = {
   id: string | null
   sectionId: string | null
   tagId: string | null
+  userId: string | null
   createdAt: Date | null
 }
 
@@ -34,6 +35,7 @@ export type SectionTagMaxAggregateOutputType = {
   id: string | null
   sectionId: string | null
   tagId: string | null
+  userId: string | null
   createdAt: Date | null
 }
 
@@ -41,6 +43,7 @@ export type SectionTagCountAggregateOutputType = {
   id: number
   sectionId: number
   tagId: number
+  userId: number
   createdAt: number
   _all: number
 }
@@ -50,6 +53,7 @@ export type SectionTagMinAggregateInputType = {
   id?: true
   sectionId?: true
   tagId?: true
+  userId?: true
   createdAt?: true
 }
 
@@ -57,6 +61,7 @@ export type SectionTagMaxAggregateInputType = {
   id?: true
   sectionId?: true
   tagId?: true
+  userId?: true
   createdAt?: true
 }
 
@@ -64,6 +69,7 @@ export type SectionTagCountAggregateInputType = {
   id?: true
   sectionId?: true
   tagId?: true
+  userId?: true
   createdAt?: true
   _all?: true
 }
@@ -144,6 +150,7 @@ export type SectionTagGroupByOutputType = {
   id: string
   sectionId: string
   tagId: string
+  userId: string | null
   createdAt: Date
   _count: SectionTagCountAggregateOutputType | null
   _min: SectionTagMinAggregateOutputType | null
@@ -172,18 +179,22 @@ export type SectionTagWhereInput = {
   id?: Prisma.StringFilter<"SectionTag"> | string
   sectionId?: Prisma.StringFilter<"SectionTag"> | string
   tagId?: Prisma.StringFilter<"SectionTag"> | string
+  userId?: Prisma.StringNullableFilter<"SectionTag"> | string | null
   createdAt?: Prisma.DateTimeFilter<"SectionTag"> | Date | string
   section?: Prisma.XOR<Prisma.SectionScalarRelationFilter, Prisma.SectionWhereInput>
   tag?: Prisma.XOR<Prisma.TagScalarRelationFilter, Prisma.TagWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type SectionTagOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   tagId?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   section?: Prisma.SectionOrderByWithRelationInput
   tag?: Prisma.TagOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type SectionTagWhereUniqueInput = Prisma.AtLeast<{
@@ -194,15 +205,18 @@ export type SectionTagWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SectionTagWhereInput | Prisma.SectionTagWhereInput[]
   sectionId?: Prisma.StringFilter<"SectionTag"> | string
   tagId?: Prisma.StringFilter<"SectionTag"> | string
+  userId?: Prisma.StringNullableFilter<"SectionTag"> | string | null
   createdAt?: Prisma.DateTimeFilter<"SectionTag"> | Date | string
   section?: Prisma.XOR<Prisma.SectionScalarRelationFilter, Prisma.SectionWhereInput>
   tag?: Prisma.XOR<Prisma.TagScalarRelationFilter, Prisma.TagWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "sectionId_tagId">
 
 export type SectionTagOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   tagId?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.SectionTagCountOrderByAggregateInput
   _max?: Prisma.SectionTagMaxOrderByAggregateInput
@@ -216,6 +230,7 @@ export type SectionTagScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"SectionTag"> | string
   sectionId?: Prisma.StringWithAggregatesFilter<"SectionTag"> | string
   tagId?: Prisma.StringWithAggregatesFilter<"SectionTag"> | string
+  userId?: Prisma.StringNullableWithAggregatesFilter<"SectionTag"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SectionTag"> | Date | string
 }
 
@@ -224,12 +239,14 @@ export type SectionTagCreateInput = {
   createdAt?: Date | string
   section: Prisma.SectionCreateNestedOneWithoutTagsInput
   tag: Prisma.TagCreateNestedOneWithoutSectionTagInput
+  user?: Prisma.UserCreateNestedOneWithoutSectionTagInput
 }
 
 export type SectionTagUncheckedCreateInput = {
   id?: string
   sectionId: string
   tagId: string
+  userId?: string | null
   createdAt?: Date | string
 }
 
@@ -238,12 +255,14 @@ export type SectionTagUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   section?: Prisma.SectionUpdateOneRequiredWithoutTagsNestedInput
   tag?: Prisma.TagUpdateOneRequiredWithoutSectionTagNestedInput
+  user?: Prisma.UserUpdateOneWithoutSectionTagNestedInput
 }
 
 export type SectionTagUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sectionId?: Prisma.StringFieldUpdateOperationsInput | string
   tagId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -251,6 +270,7 @@ export type SectionTagCreateManyInput = {
   id?: string
   sectionId: string
   tagId: string
+  userId?: string | null
   createdAt?: Date | string
 }
 
@@ -263,6 +283,7 @@ export type SectionTagUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sectionId?: Prisma.StringFieldUpdateOperationsInput | string
   tagId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -285,6 +306,7 @@ export type SectionTagCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   tagId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -292,6 +314,7 @@ export type SectionTagMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   tagId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -299,7 +322,50 @@ export type SectionTagMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sectionId?: Prisma.SortOrder
   tagId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type SectionTagCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.SectionTagCreateWithoutUserInput, Prisma.SectionTagUncheckedCreateWithoutUserInput> | Prisma.SectionTagCreateWithoutUserInput[] | Prisma.SectionTagUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SectionTagCreateOrConnectWithoutUserInput | Prisma.SectionTagCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.SectionTagCreateManyUserInputEnvelope
+  connect?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+}
+
+export type SectionTagUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.SectionTagCreateWithoutUserInput, Prisma.SectionTagUncheckedCreateWithoutUserInput> | Prisma.SectionTagCreateWithoutUserInput[] | Prisma.SectionTagUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SectionTagCreateOrConnectWithoutUserInput | Prisma.SectionTagCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.SectionTagCreateManyUserInputEnvelope
+  connect?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+}
+
+export type SectionTagUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.SectionTagCreateWithoutUserInput, Prisma.SectionTagUncheckedCreateWithoutUserInput> | Prisma.SectionTagCreateWithoutUserInput[] | Prisma.SectionTagUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SectionTagCreateOrConnectWithoutUserInput | Prisma.SectionTagCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.SectionTagUpsertWithWhereUniqueWithoutUserInput | Prisma.SectionTagUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.SectionTagCreateManyUserInputEnvelope
+  set?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+  disconnect?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+  delete?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+  connect?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+  update?: Prisma.SectionTagUpdateWithWhereUniqueWithoutUserInput | Prisma.SectionTagUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.SectionTagUpdateManyWithWhereWithoutUserInput | Prisma.SectionTagUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.SectionTagScalarWhereInput | Prisma.SectionTagScalarWhereInput[]
+}
+
+export type SectionTagUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.SectionTagCreateWithoutUserInput, Prisma.SectionTagUncheckedCreateWithoutUserInput> | Prisma.SectionTagCreateWithoutUserInput[] | Prisma.SectionTagUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SectionTagCreateOrConnectWithoutUserInput | Prisma.SectionTagCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.SectionTagUpsertWithWhereUniqueWithoutUserInput | Prisma.SectionTagUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.SectionTagCreateManyUserInputEnvelope
+  set?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+  disconnect?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+  delete?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+  connect?: Prisma.SectionTagWhereUniqueInput | Prisma.SectionTagWhereUniqueInput[]
+  update?: Prisma.SectionTagUpdateWithWhereUniqueWithoutUserInput | Prisma.SectionTagUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.SectionTagUpdateManyWithWhereWithoutUserInput | Prisma.SectionTagUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.SectionTagScalarWhereInput | Prisma.SectionTagScalarWhereInput[]
 }
 
 export type SectionTagCreateNestedManyWithoutSectionInput = {
@@ -386,15 +452,68 @@ export type SectionTagUncheckedUpdateManyWithoutTagNestedInput = {
   deleteMany?: Prisma.SectionTagScalarWhereInput | Prisma.SectionTagScalarWhereInput[]
 }
 
+export type SectionTagCreateWithoutUserInput = {
+  id?: string
+  createdAt?: Date | string
+  section: Prisma.SectionCreateNestedOneWithoutTagsInput
+  tag: Prisma.TagCreateNestedOneWithoutSectionTagInput
+}
+
+export type SectionTagUncheckedCreateWithoutUserInput = {
+  id?: string
+  sectionId: string
+  tagId: string
+  createdAt?: Date | string
+}
+
+export type SectionTagCreateOrConnectWithoutUserInput = {
+  where: Prisma.SectionTagWhereUniqueInput
+  create: Prisma.XOR<Prisma.SectionTagCreateWithoutUserInput, Prisma.SectionTagUncheckedCreateWithoutUserInput>
+}
+
+export type SectionTagCreateManyUserInputEnvelope = {
+  data: Prisma.SectionTagCreateManyUserInput | Prisma.SectionTagCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type SectionTagUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.SectionTagWhereUniqueInput
+  update: Prisma.XOR<Prisma.SectionTagUpdateWithoutUserInput, Prisma.SectionTagUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.SectionTagCreateWithoutUserInput, Prisma.SectionTagUncheckedCreateWithoutUserInput>
+}
+
+export type SectionTagUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.SectionTagWhereUniqueInput
+  data: Prisma.XOR<Prisma.SectionTagUpdateWithoutUserInput, Prisma.SectionTagUncheckedUpdateWithoutUserInput>
+}
+
+export type SectionTagUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.SectionTagScalarWhereInput
+  data: Prisma.XOR<Prisma.SectionTagUpdateManyMutationInput, Prisma.SectionTagUncheckedUpdateManyWithoutUserInput>
+}
+
+export type SectionTagScalarWhereInput = {
+  AND?: Prisma.SectionTagScalarWhereInput | Prisma.SectionTagScalarWhereInput[]
+  OR?: Prisma.SectionTagScalarWhereInput[]
+  NOT?: Prisma.SectionTagScalarWhereInput | Prisma.SectionTagScalarWhereInput[]
+  id?: Prisma.StringFilter<"SectionTag"> | string
+  sectionId?: Prisma.StringFilter<"SectionTag"> | string
+  tagId?: Prisma.StringFilter<"SectionTag"> | string
+  userId?: Prisma.StringNullableFilter<"SectionTag"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"SectionTag"> | Date | string
+}
+
 export type SectionTagCreateWithoutSectionInput = {
   id?: string
   createdAt?: Date | string
   tag: Prisma.TagCreateNestedOneWithoutSectionTagInput
+  user?: Prisma.UserCreateNestedOneWithoutSectionTagInput
 }
 
 export type SectionTagUncheckedCreateWithoutSectionInput = {
   id?: string
   tagId: string
+  userId?: string | null
   createdAt?: Date | string
 }
 
@@ -424,25 +543,17 @@ export type SectionTagUpdateManyWithWhereWithoutSectionInput = {
   data: Prisma.XOR<Prisma.SectionTagUpdateManyMutationInput, Prisma.SectionTagUncheckedUpdateManyWithoutSectionInput>
 }
 
-export type SectionTagScalarWhereInput = {
-  AND?: Prisma.SectionTagScalarWhereInput | Prisma.SectionTagScalarWhereInput[]
-  OR?: Prisma.SectionTagScalarWhereInput[]
-  NOT?: Prisma.SectionTagScalarWhereInput | Prisma.SectionTagScalarWhereInput[]
-  id?: Prisma.StringFilter<"SectionTag"> | string
-  sectionId?: Prisma.StringFilter<"SectionTag"> | string
-  tagId?: Prisma.StringFilter<"SectionTag"> | string
-  createdAt?: Prisma.DateTimeFilter<"SectionTag"> | Date | string
-}
-
 export type SectionTagCreateWithoutTagInput = {
   id?: string
   createdAt?: Date | string
   section: Prisma.SectionCreateNestedOneWithoutTagsInput
+  user?: Prisma.UserCreateNestedOneWithoutSectionTagInput
 }
 
 export type SectionTagUncheckedCreateWithoutTagInput = {
   id?: string
   sectionId: string
+  userId?: string | null
   createdAt?: Date | string
 }
 
@@ -472,9 +583,38 @@ export type SectionTagUpdateManyWithWhereWithoutTagInput = {
   data: Prisma.XOR<Prisma.SectionTagUpdateManyMutationInput, Prisma.SectionTagUncheckedUpdateManyWithoutTagInput>
 }
 
+export type SectionTagCreateManyUserInput = {
+  id?: string
+  sectionId: string
+  tagId: string
+  createdAt?: Date | string
+}
+
+export type SectionTagUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  section?: Prisma.SectionUpdateOneRequiredWithoutTagsNestedInput
+  tag?: Prisma.TagUpdateOneRequiredWithoutSectionTagNestedInput
+}
+
+export type SectionTagUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  tagId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SectionTagUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  tagId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type SectionTagCreateManySectionInput = {
   id?: string
   tagId: string
+  userId?: string | null
   createdAt?: Date | string
 }
 
@@ -482,23 +622,27 @@ export type SectionTagUpdateWithoutSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tag?: Prisma.TagUpdateOneRequiredWithoutSectionTagNestedInput
+  user?: Prisma.UserUpdateOneWithoutSectionTagNestedInput
 }
 
 export type SectionTagUncheckedUpdateWithoutSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tagId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SectionTagUncheckedUpdateManyWithoutSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tagId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SectionTagCreateManyTagInput = {
   id?: string
   sectionId: string
+  userId?: string | null
   createdAt?: Date | string
 }
 
@@ -506,17 +650,20 @@ export type SectionTagUpdateWithoutTagInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   section?: Prisma.SectionUpdateOneRequiredWithoutTagsNestedInput
+  user?: Prisma.UserUpdateOneWithoutSectionTagNestedInput
 }
 
 export type SectionTagUncheckedUpdateWithoutTagInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SectionTagUncheckedUpdateManyWithoutTagInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -526,48 +673,58 @@ export type SectionTagSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   sectionId?: boolean
   tagId?: boolean
+  userId?: boolean
   createdAt?: boolean
   section?: boolean | Prisma.SectionDefaultArgs<ExtArgs>
   tag?: boolean | Prisma.TagDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.SectionTag$userArgs<ExtArgs>
 }, ExtArgs["result"]["sectionTag"]>
 
 export type SectionTagSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   sectionId?: boolean
   tagId?: boolean
+  userId?: boolean
   createdAt?: boolean
   section?: boolean | Prisma.SectionDefaultArgs<ExtArgs>
   tag?: boolean | Prisma.TagDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.SectionTag$userArgs<ExtArgs>
 }, ExtArgs["result"]["sectionTag"]>
 
 export type SectionTagSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   sectionId?: boolean
   tagId?: boolean
+  userId?: boolean
   createdAt?: boolean
   section?: boolean | Prisma.SectionDefaultArgs<ExtArgs>
   tag?: boolean | Prisma.TagDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.SectionTag$userArgs<ExtArgs>
 }, ExtArgs["result"]["sectionTag"]>
 
 export type SectionTagSelectScalar = {
   id?: boolean
   sectionId?: boolean
   tagId?: boolean
+  userId?: boolean
   createdAt?: boolean
 }
 
-export type SectionTagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sectionId" | "tagId" | "createdAt", ExtArgs["result"]["sectionTag"]>
+export type SectionTagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sectionId" | "tagId" | "userId" | "createdAt", ExtArgs["result"]["sectionTag"]>
 export type SectionTagInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   section?: boolean | Prisma.SectionDefaultArgs<ExtArgs>
   tag?: boolean | Prisma.TagDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.SectionTag$userArgs<ExtArgs>
 }
 export type SectionTagIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   section?: boolean | Prisma.SectionDefaultArgs<ExtArgs>
   tag?: boolean | Prisma.TagDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.SectionTag$userArgs<ExtArgs>
 }
 export type SectionTagIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   section?: boolean | Prisma.SectionDefaultArgs<ExtArgs>
   tag?: boolean | Prisma.TagDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.SectionTag$userArgs<ExtArgs>
 }
 
 export type $SectionTagPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -575,11 +732,13 @@ export type $SectionTagPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     section: Prisma.$SectionPayload<ExtArgs>
     tag: Prisma.$TagPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     sectionId: string
     tagId: string
+    userId: string | null
     createdAt: Date
   }, ExtArgs["result"]["sectionTag"]>
   composites: {}
@@ -977,6 +1136,7 @@ export interface Prisma__SectionTagClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   section<T extends Prisma.SectionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SectionDefaultArgs<ExtArgs>>): Prisma.Prisma__SectionClient<runtime.Types.Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tag<T extends Prisma.TagDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TagDefaultArgs<ExtArgs>>): Prisma.Prisma__TagClient<runtime.Types.Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.SectionTag$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SectionTag$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1009,6 +1169,7 @@ export interface SectionTagFieldRefs {
   readonly id: Prisma.FieldRef<"SectionTag", 'String'>
   readonly sectionId: Prisma.FieldRef<"SectionTag", 'String'>
   readonly tagId: Prisma.FieldRef<"SectionTag", 'String'>
+  readonly userId: Prisma.FieldRef<"SectionTag", 'String'>
   readonly createdAt: Prisma.FieldRef<"SectionTag", 'DateTime'>
 }
     
@@ -1403,6 +1564,25 @@ export type SectionTagDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many SectionTags to delete.
    */
   limit?: number
+}
+
+/**
+ * SectionTag.user
+ */
+export type SectionTag$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

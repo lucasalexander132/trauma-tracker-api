@@ -38,13 +38,14 @@ model User {
   oauthId       String?
 
   // Relations
-  events    Event[]
-  tags      Tag[]
-  settings  UserSettings?
-  sessions  Session[]
-  reports   Report[]
-  resources UserResource[]
-  Section   Section[]
+  events     Event[]
+  tags       Tag[]
+  settings   UserSettings?
+  sessions   Session[]
+  reports    Report[]
+  resources  UserResource[]
+  Section    Section[]
+  SectionTag SectionTag[]
 
   @@index([email])
   @@map("users")
@@ -149,6 +150,7 @@ model Section {
   description String?
   taggable    Boolean @default(true)
   color       String
+  sortOrder   Int     @default(0)
 
   // Relations
 
@@ -163,10 +165,11 @@ model Tag {
   user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Tag properties
-  name     String
-  icon     String // Icon identifier (e.g., 'heart', 'bolt')
-  color    String // Hex color code
-  category String // 'response' | 'emotion' | 'context' | 'custom'
+  name      String
+  icon      String // Icon identifier (e.g., 'heart', 'bolt')
+  color     String // Hex color code
+  category  String // 'response' | 'emotion' | 'context' | 'custom'
+  sortOrder Int    @default(0)
 
   // System vs custom
   isSystem Boolean @default(false)
@@ -207,6 +210,8 @@ model SectionTag {
   section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   tagId     String
   tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 

@@ -1,9 +1,9 @@
-
 export const sections = [{
     title: 'Trauma Responses',
     description: 'How are you responding?',
     cantAddTag: true,
     color: '--color-Dark-Garnet',
+    sortOrder: 1,
     tags: [
         {
             id: 1,
@@ -12,7 +12,8 @@ export const sections = [{
             color: '--color-Pumpkin',
             category: 'response',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 1
         },
         {
             id: 2,
@@ -21,7 +22,8 @@ export const sections = [{
             color: '--color-Sunglow',
             category: 'response',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 2
         },
         {
             id: 3,
@@ -30,7 +32,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'response',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 3
         },
         {
             id: 4,
@@ -39,13 +42,15 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'response',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 4
         }
     ]
 },{
     title: 'Emotions',
     description: 'What emotions are you feeling right now?',
     color: '--color-Olivine',
+    sortOrder: 2,
     tags: [
         {
             id: 5,
@@ -54,7 +59,8 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'emotions',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 1
         },
         {
             id: 6,
@@ -63,7 +69,8 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'emotions',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 2
         },
         {
             id: 7,
@@ -72,7 +79,8 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'emotions',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 3
         },
         {
             id: 8,
@@ -81,7 +89,8 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'emotions',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 4
         },
         {
             id: 9,
@@ -90,7 +99,8 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'emotions',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 5
         },
         {
             id: 10,
@@ -99,7 +109,8 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'emotions',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 6
         },
         {
             id: 11,
@@ -108,7 +119,8 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'emotions',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 7
         },
         {
             id: 12,
@@ -117,13 +129,15 @@ export const sections = [{
             color: '--color-Olivine',
             category: 'emotions',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 8
         }
-]
+    ]
 }, {
     title: 'Context',
     description: 'What do you see around you?',
     color: '--color-Sunglow',
+    sortOrder: 3,
     tags: [
         {
             id: 13,
@@ -132,7 +146,8 @@ export const sections = [{
             color: '--color-Sunglow',
             category: 'context',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 1
         },
         {
             id: 14,
@@ -141,7 +156,8 @@ export const sections = [{
             color: '--color-Sunglow',
             category: 'context',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 2
         },
         {
             id: 15,
@@ -150,7 +166,8 @@ export const sections = [{
             color: '--color-Sunglow',
             category: 'context',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 3
         },
         {
             id: 16,
@@ -159,7 +176,8 @@ export const sections = [{
             color: '--color-Sunglow',
             category: 'context',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 4
         },
         {
             id: 17,
@@ -168,7 +186,8 @@ export const sections = [{
             color: '--color-Sunglow',
             category: 'context',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 5
         },
         {
             id: 18,
@@ -177,7 +196,8 @@ export const sections = [{
             color: '--color-Sunglow',
             category: 'context',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 6
         },
         {
             id: 19,
@@ -186,13 +206,15 @@ export const sections = [{
             color: '--color-Sunglow',
             category: 'context',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 7
         }
     ]
 }, {
     title: 'Body',
     description: 'What do you feel in your body?',
     color: '--color-Charcoal',
+    sortOrder: 4,
     tags: [
         {
             id: 20,
@@ -201,7 +223,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 1
         },
         {
             id: 21,
@@ -210,7 +233,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 2
         },
         {
             id: 22,
@@ -219,7 +243,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 3
         },
         {
             id: 23,
@@ -228,7 +253,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 4
         },
         {
             id: 24,
@@ -237,7 +263,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 5
         },
         {
             id: 25,
@@ -246,7 +273,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 6
         },
         {
             id: 26,
@@ -255,7 +283,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 7
         },
         {
             id: 27,
@@ -264,7 +293,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 8
         },
         {
             id: 28,
@@ -273,7 +303,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 9
         },
         {
             id: 29,
@@ -282,7 +313,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 10
         },
         {
             id: 30,
@@ -291,7 +323,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 11
         },
         {
             id: 31,
@@ -300,7 +333,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 12
         },
         {
             id: 32,
@@ -309,7 +343,8 @@ export const sections = [{
             color: '--color-Charcoal',
             category: 'body',
             i18nKey: 'tags.trauma_response.flight',
-            isSystem: true
+            isSystem: true,
+            sortOrder: 13
         }
     ]
 }];

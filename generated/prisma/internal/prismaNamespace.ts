@@ -1503,6 +1503,7 @@ export const SectionScalarFieldEnum = {
   description: 'description',
   taggable: 'taggable',
   color: 'color',
+  sortOrder: 'sortOrder',
   userId: 'userId'
 } as const
 
@@ -1516,6 +1517,7 @@ export const TagScalarFieldEnum = {
   icon: 'icon',
   color: 'color',
   category: 'category',
+  sortOrder: 'sortOrder',
   isSystem: 'isSystem',
   i18nKey: 'i18nKey',
   createdAt: 'createdAt',
@@ -1539,6 +1541,7 @@ export const SectionTagScalarFieldEnum = {
   id: 'id',
   sectionId: 'sectionId',
   tagId: 'tagId',
+  userId: 'userId',
   createdAt: 'createdAt'
 } as const
 

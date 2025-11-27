@@ -19,8 +19,18 @@ export type TagModel = runtime.Types.Result.DefaultSelection<Prisma.$TagPayload>
 
 export type AggregateTag = {
   _count: TagCountAggregateOutputType | null
+  _avg: TagAvgAggregateOutputType | null
+  _sum: TagSumAggregateOutputType | null
   _min: TagMinAggregateOutputType | null
   _max: TagMaxAggregateOutputType | null
+}
+
+export type TagAvgAggregateOutputType = {
+  sortOrder: number | null
+}
+
+export type TagSumAggregateOutputType = {
+  sortOrder: number | null
 }
 
 export type TagMinAggregateOutputType = {
@@ -30,6 +40,7 @@ export type TagMinAggregateOutputType = {
   icon: string | null
   color: string | null
   category: string | null
+  sortOrder: number | null
   isSystem: boolean | null
   i18nKey: string | null
   createdAt: Date | null
@@ -43,6 +54,7 @@ export type TagMaxAggregateOutputType = {
   icon: string | null
   color: string | null
   category: string | null
+  sortOrder: number | null
   isSystem: boolean | null
   i18nKey: string | null
   createdAt: Date | null
@@ -56,6 +68,7 @@ export type TagCountAggregateOutputType = {
   icon: number
   color: number
   category: number
+  sortOrder: number
   isSystem: number
   i18nKey: number
   createdAt: number
@@ -64,6 +77,14 @@ export type TagCountAggregateOutputType = {
 }
 
 
+export type TagAvgAggregateInputType = {
+  sortOrder?: true
+}
+
+export type TagSumAggregateInputType = {
+  sortOrder?: true
+}
+
 export type TagMinAggregateInputType = {
   id?: true
   userId?: true
@@ -71,6 +92,7 @@ export type TagMinAggregateInputType = {
   icon?: true
   color?: true
   category?: true
+  sortOrder?: true
   isSystem?: true
   i18nKey?: true
   createdAt?: true
@@ -84,6 +106,7 @@ export type TagMaxAggregateInputType = {
   icon?: true
   color?: true
   category?: true
+  sortOrder?: true
   isSystem?: true
   i18nKey?: true
   createdAt?: true
@@ -97,6 +120,7 @@ export type TagCountAggregateInputType = {
   icon?: true
   color?: true
   category?: true
+  sortOrder?: true
   isSystem?: true
   i18nKey?: true
   createdAt?: true
@@ -142,6 +166,18 @@ export type TagAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: TagAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: TagSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: TagMinAggregateInputType
@@ -172,6 +208,8 @@ export type TagGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   _count?: TagCountAggregateInputType | true
+  _avg?: TagAvgAggregateInputType
+  _sum?: TagSumAggregateInputType
   _min?: TagMinAggregateInputType
   _max?: TagMaxAggregateInputType
 }
@@ -183,11 +221,14 @@ export type TagGroupByOutputType = {
   icon: string
   color: string
   category: string
+  sortOrder: number
   isSystem: boolean
   i18nKey: string | null
   createdAt: Date
   updatedAt: Date
   _count: TagCountAggregateOutputType | null
+  _avg: TagAvgAggregateOutputType | null
+  _sum: TagSumAggregateOutputType | null
   _min: TagMinAggregateOutputType | null
   _max: TagMaxAggregateOutputType | null
 }
@@ -217,6 +258,7 @@ export type TagWhereInput = {
   icon?: Prisma.StringFilter<"Tag"> | string
   color?: Prisma.StringFilter<"Tag"> | string
   category?: Prisma.StringFilter<"Tag"> | string
+  sortOrder?: Prisma.IntFilter<"Tag"> | number
   isSystem?: Prisma.BoolFilter<"Tag"> | boolean
   i18nKey?: Prisma.StringNullableFilter<"Tag"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Tag"> | Date | string
@@ -233,6 +275,7 @@ export type TagOrderByWithRelationInput = {
   icon?: Prisma.SortOrder
   color?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   isSystem?: Prisma.SortOrder
   i18nKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -253,6 +296,7 @@ export type TagWhereUniqueInput = Prisma.AtLeast<{
   icon?: Prisma.StringFilter<"Tag"> | string
   color?: Prisma.StringFilter<"Tag"> | string
   category?: Prisma.StringFilter<"Tag"> | string
+  sortOrder?: Prisma.IntFilter<"Tag"> | number
   isSystem?: Prisma.BoolFilter<"Tag"> | boolean
   i18nKey?: Prisma.StringNullableFilter<"Tag"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Tag"> | Date | string
@@ -269,13 +313,16 @@ export type TagOrderByWithAggregationInput = {
   icon?: Prisma.SortOrder
   color?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   isSystem?: Prisma.SortOrder
   i18nKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TagCountOrderByAggregateInput
+  _avg?: Prisma.TagAvgOrderByAggregateInput
   _max?: Prisma.TagMaxOrderByAggregateInput
   _min?: Prisma.TagMinOrderByAggregateInput
+  _sum?: Prisma.TagSumOrderByAggregateInput
 }
 
 export type TagScalarWhereWithAggregatesInput = {
@@ -288,6 +335,7 @@ export type TagScalarWhereWithAggregatesInput = {
   icon?: Prisma.StringWithAggregatesFilter<"Tag"> | string
   color?: Prisma.StringWithAggregatesFilter<"Tag"> | string
   category?: Prisma.StringWithAggregatesFilter<"Tag"> | string
+  sortOrder?: Prisma.IntWithAggregatesFilter<"Tag"> | number
   isSystem?: Prisma.BoolWithAggregatesFilter<"Tag"> | boolean
   i18nKey?: Prisma.StringNullableWithAggregatesFilter<"Tag"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tag"> | Date | string
@@ -300,6 +348,7 @@ export type TagCreateInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -316,6 +365,7 @@ export type TagUncheckedCreateInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -330,6 +380,7 @@ export type TagUpdateInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -346,6 +397,7 @@ export type TagUncheckedUpdateInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -361,6 +413,7 @@ export type TagCreateManyInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -373,6 +426,7 @@ export type TagUpdateManyMutationInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -386,6 +440,7 @@ export type TagUncheckedUpdateManyInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -414,10 +469,15 @@ export type TagCountOrderByAggregateInput = {
   icon?: Prisma.SortOrder
   color?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   isSystem?: Prisma.SortOrder
   i18nKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type TagAvgOrderByAggregateInput = {
+  sortOrder?: Prisma.SortOrder
 }
 
 export type TagMaxOrderByAggregateInput = {
@@ -427,6 +487,7 @@ export type TagMaxOrderByAggregateInput = {
   icon?: Prisma.SortOrder
   color?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   isSystem?: Prisma.SortOrder
   i18nKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -440,10 +501,15 @@ export type TagMinOrderByAggregateInput = {
   icon?: Prisma.SortOrder
   color?: Prisma.SortOrder
   category?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   isSystem?: Prisma.SortOrder
   i18nKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type TagSumOrderByAggregateInput = {
+  sortOrder?: Prisma.SortOrder
 }
 
 export type TagScalarRelationFilter = {
@@ -527,6 +593,7 @@ export type TagCreateWithoutUserInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -541,6 +608,7 @@ export type TagUncheckedCreateWithoutUserInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -585,6 +653,7 @@ export type TagScalarWhereInput = {
   icon?: Prisma.StringFilter<"Tag"> | string
   color?: Prisma.StringFilter<"Tag"> | string
   category?: Prisma.StringFilter<"Tag"> | string
+  sortOrder?: Prisma.IntFilter<"Tag"> | number
   isSystem?: Prisma.BoolFilter<"Tag"> | boolean
   i18nKey?: Prisma.StringNullableFilter<"Tag"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Tag"> | Date | string
@@ -597,6 +666,7 @@ export type TagCreateWithoutEventTagsInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -612,6 +682,7 @@ export type TagUncheckedCreateWithoutEventTagsInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -641,6 +712,7 @@ export type TagUpdateWithoutEventTagsInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -656,6 +728,7 @@ export type TagUncheckedUpdateWithoutEventTagsInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -669,6 +742,7 @@ export type TagCreateWithoutSectionTagInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -684,6 +758,7 @@ export type TagUncheckedCreateWithoutSectionTagInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -713,6 +788,7 @@ export type TagUpdateWithoutSectionTagInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -728,6 +804,7 @@ export type TagUncheckedUpdateWithoutSectionTagInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -741,6 +818,7 @@ export type TagCreateManyUserInput = {
   icon: string
   color: string
   category: string
+  sortOrder?: number
   isSystem?: boolean
   i18nKey?: string | null
   createdAt?: Date | string
@@ -753,6 +831,7 @@ export type TagUpdateWithoutUserInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -767,6 +846,7 @@ export type TagUncheckedUpdateWithoutUserInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -781,6 +861,7 @@ export type TagUncheckedUpdateManyWithoutUserInput = {
   icon?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   i18nKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -834,6 +915,7 @@ export type TagSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   icon?: boolean
   color?: boolean
   category?: boolean
+  sortOrder?: boolean
   isSystem?: boolean
   i18nKey?: boolean
   createdAt?: boolean
@@ -851,6 +933,7 @@ export type TagSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
   icon?: boolean
   color?: boolean
   category?: boolean
+  sortOrder?: boolean
   isSystem?: boolean
   i18nKey?: boolean
   createdAt?: boolean
@@ -865,6 +948,7 @@ export type TagSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
   icon?: boolean
   color?: boolean
   category?: boolean
+  sortOrder?: boolean
   isSystem?: boolean
   i18nKey?: boolean
   createdAt?: boolean
@@ -879,13 +963,14 @@ export type TagSelectScalar = {
   icon?: boolean
   color?: boolean
   category?: boolean
+  sortOrder?: boolean
   isSystem?: boolean
   i18nKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "icon" | "color" | "category" | "isSystem" | "i18nKey" | "createdAt" | "updatedAt", ExtArgs["result"]["tag"]>
+export type TagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "icon" | "color" | "category" | "sortOrder" | "isSystem" | "i18nKey" | "createdAt" | "updatedAt", ExtArgs["result"]["tag"]>
 export type TagInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.Tag$userArgs<ExtArgs>
   eventTags?: boolean | Prisma.Tag$eventTagsArgs<ExtArgs>
@@ -913,6 +998,7 @@ export type $TagPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     icon: string
     color: string
     category: string
+    sortOrder: number
     isSystem: boolean
     i18nKey: string | null
     createdAt: Date
@@ -1349,6 +1435,7 @@ export interface TagFieldRefs {
   readonly icon: Prisma.FieldRef<"Tag", 'String'>
   readonly color: Prisma.FieldRef<"Tag", 'String'>
   readonly category: Prisma.FieldRef<"Tag", 'String'>
+  readonly sortOrder: Prisma.FieldRef<"Tag", 'Int'>
   readonly isSystem: Prisma.FieldRef<"Tag", 'Boolean'>
   readonly i18nKey: Prisma.FieldRef<"Tag", 'String'>
   readonly createdAt: Prisma.FieldRef<"Tag", 'DateTime'>

@@ -19,8 +19,18 @@ export type SectionModel = runtime.Types.Result.DefaultSelection<Prisma.$Section
 
 export type AggregateSection = {
   _count: SectionCountAggregateOutputType | null
+  _avg: SectionAvgAggregateOutputType | null
+  _sum: SectionSumAggregateOutputType | null
   _min: SectionMinAggregateOutputType | null
   _max: SectionMaxAggregateOutputType | null
+}
+
+export type SectionAvgAggregateOutputType = {
+  sortOrder: number | null
+}
+
+export type SectionSumAggregateOutputType = {
+  sortOrder: number | null
 }
 
 export type SectionMinAggregateOutputType = {
@@ -29,6 +39,7 @@ export type SectionMinAggregateOutputType = {
   description: string | null
   taggable: boolean | null
   color: string | null
+  sortOrder: number | null
   userId: string | null
 }
 
@@ -38,6 +49,7 @@ export type SectionMaxAggregateOutputType = {
   description: string | null
   taggable: boolean | null
   color: string | null
+  sortOrder: number | null
   userId: string | null
 }
 
@@ -47,10 +59,19 @@ export type SectionCountAggregateOutputType = {
   description: number
   taggable: number
   color: number
+  sortOrder: number
   userId: number
   _all: number
 }
 
+
+export type SectionAvgAggregateInputType = {
+  sortOrder?: true
+}
+
+export type SectionSumAggregateInputType = {
+  sortOrder?: true
+}
 
 export type SectionMinAggregateInputType = {
   id?: true
@@ -58,6 +79,7 @@ export type SectionMinAggregateInputType = {
   description?: true
   taggable?: true
   color?: true
+  sortOrder?: true
   userId?: true
 }
 
@@ -67,6 +89,7 @@ export type SectionMaxAggregateInputType = {
   description?: true
   taggable?: true
   color?: true
+  sortOrder?: true
   userId?: true
 }
 
@@ -76,6 +99,7 @@ export type SectionCountAggregateInputType = {
   description?: true
   taggable?: true
   color?: true
+  sortOrder?: true
   userId?: true
   _all?: true
 }
@@ -118,6 +142,18 @@ export type SectionAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: SectionAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: SectionSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: SectionMinAggregateInputType
@@ -148,6 +184,8 @@ export type SectionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: SectionCountAggregateInputType | true
+  _avg?: SectionAvgAggregateInputType
+  _sum?: SectionSumAggregateInputType
   _min?: SectionMinAggregateInputType
   _max?: SectionMaxAggregateInputType
 }
@@ -158,8 +196,11 @@ export type SectionGroupByOutputType = {
   description: string | null
   taggable: boolean
   color: string
+  sortOrder: number
   userId: string | null
   _count: SectionCountAggregateOutputType | null
+  _avg: SectionAvgAggregateOutputType | null
+  _sum: SectionSumAggregateOutputType | null
   _min: SectionMinAggregateOutputType | null
   _max: SectionMaxAggregateOutputType | null
 }
@@ -188,6 +229,7 @@ export type SectionWhereInput = {
   description?: Prisma.StringNullableFilter<"Section"> | string | null
   taggable?: Prisma.BoolFilter<"Section"> | boolean
   color?: Prisma.StringFilter<"Section"> | string
+  sortOrder?: Prisma.IntFilter<"Section"> | number
   userId?: Prisma.StringNullableFilter<"Section"> | string | null
   tags?: Prisma.SectionTagListRelationFilter
   User?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -199,6 +241,7 @@ export type SectionOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   taggable?: Prisma.SortOrder
   color?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
   tags?: Prisma.SectionTagOrderByRelationAggregateInput
   User?: Prisma.UserOrderByWithRelationInput
@@ -213,6 +256,7 @@ export type SectionWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Section"> | string | null
   taggable?: Prisma.BoolFilter<"Section"> | boolean
   color?: Prisma.StringFilter<"Section"> | string
+  sortOrder?: Prisma.IntFilter<"Section"> | number
   userId?: Prisma.StringNullableFilter<"Section"> | string | null
   tags?: Prisma.SectionTagListRelationFilter
   User?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -224,10 +268,13 @@ export type SectionOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   taggable?: Prisma.SortOrder
   color?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SectionCountOrderByAggregateInput
+  _avg?: Prisma.SectionAvgOrderByAggregateInput
   _max?: Prisma.SectionMaxOrderByAggregateInput
   _min?: Prisma.SectionMinOrderByAggregateInput
+  _sum?: Prisma.SectionSumOrderByAggregateInput
 }
 
 export type SectionScalarWhereWithAggregatesInput = {
@@ -239,6 +286,7 @@ export type SectionScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"Section"> | string | null
   taggable?: Prisma.BoolWithAggregatesFilter<"Section"> | boolean
   color?: Prisma.StringWithAggregatesFilter<"Section"> | string
+  sortOrder?: Prisma.IntWithAggregatesFilter<"Section"> | number
   userId?: Prisma.StringNullableWithAggregatesFilter<"Section"> | string | null
 }
 
@@ -248,6 +296,7 @@ export type SectionCreateInput = {
   description?: string | null
   taggable?: boolean
   color: string
+  sortOrder?: number
   tags?: Prisma.SectionTagCreateNestedManyWithoutSectionInput
   User?: Prisma.UserCreateNestedOneWithoutSectionInput
 }
@@ -258,6 +307,7 @@ export type SectionUncheckedCreateInput = {
   description?: string | null
   taggable?: boolean
   color: string
+  sortOrder?: number
   userId?: string | null
   tags?: Prisma.SectionTagUncheckedCreateNestedManyWithoutSectionInput
 }
@@ -268,6 +318,7 @@ export type SectionUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.SectionTagUpdateManyWithoutSectionNestedInput
   User?: Prisma.UserUpdateOneWithoutSectionNestedInput
 }
@@ -278,6 +329,7 @@ export type SectionUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tags?: Prisma.SectionTagUncheckedUpdateManyWithoutSectionNestedInput
 }
@@ -288,6 +340,7 @@ export type SectionCreateManyInput = {
   description?: string | null
   taggable?: boolean
   color: string
+  sortOrder?: number
   userId?: string | null
 }
 
@@ -297,6 +350,7 @@ export type SectionUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type SectionUncheckedUpdateManyInput = {
@@ -305,6 +359,7 @@ export type SectionUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -324,7 +379,12 @@ export type SectionCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   taggable?: Prisma.SortOrder
   color?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+}
+
+export type SectionAvgOrderByAggregateInput = {
+  sortOrder?: Prisma.SortOrder
 }
 
 export type SectionMaxOrderByAggregateInput = {
@@ -333,6 +393,7 @@ export type SectionMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   taggable?: Prisma.SortOrder
   color?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
@@ -342,7 +403,12 @@ export type SectionMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   taggable?: Prisma.SortOrder
   color?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+}
+
+export type SectionSumOrderByAggregateInput = {
+  sortOrder?: Prisma.SortOrder
 }
 
 export type SectionScalarRelationFilter = {
@@ -412,6 +478,7 @@ export type SectionCreateWithoutUserInput = {
   description?: string | null
   taggable?: boolean
   color: string
+  sortOrder?: number
   tags?: Prisma.SectionTagCreateNestedManyWithoutSectionInput
 }
 
@@ -421,6 +488,7 @@ export type SectionUncheckedCreateWithoutUserInput = {
   description?: string | null
   taggable?: boolean
   color: string
+  sortOrder?: number
   tags?: Prisma.SectionTagUncheckedCreateNestedManyWithoutSectionInput
 }
 
@@ -459,6 +527,7 @@ export type SectionScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"Section"> | string | null
   taggable?: Prisma.BoolFilter<"Section"> | boolean
   color?: Prisma.StringFilter<"Section"> | string
+  sortOrder?: Prisma.IntFilter<"Section"> | number
   userId?: Prisma.StringNullableFilter<"Section"> | string | null
 }
 
@@ -468,6 +537,7 @@ export type SectionCreateWithoutTagsInput = {
   description?: string | null
   taggable?: boolean
   color: string
+  sortOrder?: number
   User?: Prisma.UserCreateNestedOneWithoutSectionInput
 }
 
@@ -477,6 +547,7 @@ export type SectionUncheckedCreateWithoutTagsInput = {
   description?: string | null
   taggable?: boolean
   color: string
+  sortOrder?: number
   userId?: string | null
 }
 
@@ -502,6 +573,7 @@ export type SectionUpdateWithoutTagsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   User?: Prisma.UserUpdateOneWithoutSectionNestedInput
 }
 
@@ -511,6 +583,7 @@ export type SectionUncheckedUpdateWithoutTagsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -520,6 +593,7 @@ export type SectionCreateManyUserInput = {
   description?: string | null
   taggable?: boolean
   color: string
+  sortOrder?: number
 }
 
 export type SectionUpdateWithoutUserInput = {
@@ -528,6 +602,7 @@ export type SectionUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.SectionTagUpdateManyWithoutSectionNestedInput
 }
 
@@ -537,6 +612,7 @@ export type SectionUncheckedUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.SectionTagUncheckedUpdateManyWithoutSectionNestedInput
 }
 
@@ -546,6 +622,7 @@ export type SectionUncheckedUpdateManyWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taggable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -585,6 +662,7 @@ export type SectionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   description?: boolean
   taggable?: boolean
   color?: boolean
+  sortOrder?: boolean
   userId?: boolean
   tags?: boolean | Prisma.Section$tagsArgs<ExtArgs>
   User?: boolean | Prisma.Section$UserArgs<ExtArgs>
@@ -597,6 +675,7 @@ export type SectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   taggable?: boolean
   color?: boolean
+  sortOrder?: boolean
   userId?: boolean
   User?: boolean | Prisma.Section$UserArgs<ExtArgs>
 }, ExtArgs["result"]["section"]>
@@ -607,6 +686,7 @@ export type SectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   taggable?: boolean
   color?: boolean
+  sortOrder?: boolean
   userId?: boolean
   User?: boolean | Prisma.Section$UserArgs<ExtArgs>
 }, ExtArgs["result"]["section"]>
@@ -617,10 +697,11 @@ export type SectionSelectScalar = {
   description?: boolean
   taggable?: boolean
   color?: boolean
+  sortOrder?: boolean
   userId?: boolean
 }
 
-export type SectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "taggable" | "color" | "userId", ExtArgs["result"]["section"]>
+export type SectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "taggable" | "color" | "sortOrder" | "userId", ExtArgs["result"]["section"]>
 export type SectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tags?: boolean | Prisma.Section$tagsArgs<ExtArgs>
   User?: boolean | Prisma.Section$UserArgs<ExtArgs>
@@ -645,6 +726,7 @@ export type $SectionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     description: string | null
     taggable: boolean
     color: string
+    sortOrder: number
     userId: string | null
   }, ExtArgs["result"]["section"]>
   composites: {}
@@ -1076,6 +1158,7 @@ export interface SectionFieldRefs {
   readonly description: Prisma.FieldRef<"Section", 'String'>
   readonly taggable: Prisma.FieldRef<"Section", 'Boolean'>
   readonly color: Prisma.FieldRef<"Section", 'String'>
+  readonly sortOrder: Prisma.FieldRef<"Section", 'Int'>
   readonly userId: Prisma.FieldRef<"Section", 'String'>
 }
     
