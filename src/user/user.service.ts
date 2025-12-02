@@ -93,7 +93,7 @@ export class UserService {
                 eventTags: foundTags
             })
         }
-        const nextCursor = entries.length === limit ? entries[entries.length - 1].id : null;
+        const nextCursor = entries.length === parseInt(limit+'') ? entries[entries.length - 1].id : null;
         return {
             responseEntries,
             nextCursor

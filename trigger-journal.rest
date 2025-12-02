@@ -20,6 +20,9 @@ Content-Type: application/json
     "password": "Password1!"
 }
 
+### Post Signout User
+POST {{host}}/auth/signout
+
 ### Get Specific User
 GET {{host}}/auth/{{username}}
 
@@ -88,7 +91,7 @@ Content-Type: application/json
             "id": "cmidn0mox0012ux9mvhf4vdp3"
         }
     ],
-    "intensity": {"intensityMethod": "color_slider", "intensityRating": 100, "intensityValue": 100}
+    "intensity": {"intensityMethod": "color_slider", "intensityRating": "Frigid", "intensityValue": 100}
 }
 
 ### Get Initial Entries

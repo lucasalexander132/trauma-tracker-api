@@ -6,7 +6,7 @@ export type TIntensityMethod = 'color_slider' | undefined;
 export interface IIntensity {
     intensityMethod: TIntensityMethod;
     intensityValue: number;
-    intensityRating: number;
+    intensityRating?: string;
 }
 
 export class AddEntryDTO {

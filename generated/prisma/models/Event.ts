@@ -27,13 +27,11 @@ export type AggregateEvent = {
 
 export type EventAvgAggregateOutputType = {
   intensityValue: number | null
-  intensityRating: number | null
   version: number | null
 }
 
 export type EventSumAggregateOutputType = {
   intensityValue: number | null
-  intensityRating: number | null
   version: number | null
 }
 
@@ -44,7 +42,7 @@ export type EventMinAggregateOutputType = {
   timestamp: Date | null
   intensityMethod: string | null
   intensityValue: number | null
-  intensityRating: number | null
+  intensityRating: string | null
   hasFollowUp: boolean | null
   followUpAt: Date | null
   followUpCompleted: boolean | null
@@ -63,7 +61,7 @@ export type EventMaxAggregateOutputType = {
   timestamp: Date | null
   intensityMethod: string | null
   intensityValue: number | null
-  intensityRating: number | null
+  intensityRating: string | null
   hasFollowUp: boolean | null
   followUpAt: Date | null
   followUpCompleted: boolean | null
@@ -98,13 +96,11 @@ export type EventCountAggregateOutputType = {
 
 export type EventAvgAggregateInputType = {
   intensityValue?: true
-  intensityRating?: true
   version?: true
 }
 
 export type EventSumAggregateInputType = {
   intensityValue?: true
-  intensityRating?: true
   version?: true
 }
 
@@ -259,7 +255,7 @@ export type EventGroupByOutputType = {
   timestamp: Date
   intensityMethod: string
   intensityValue: number
-  intensityRating: number | null
+  intensityRating: string | null
   hasFollowUp: boolean
   followUpAt: Date | null
   followUpCompleted: boolean
@@ -301,7 +297,7 @@ export type EventWhereInput = {
   timestamp?: Prisma.DateTimeFilter<"Event"> | Date | string
   intensityMethod?: Prisma.StringFilter<"Event"> | string
   intensityValue?: Prisma.IntFilter<"Event"> | number
-  intensityRating?: Prisma.IntNullableFilter<"Event"> | number | null
+  intensityRating?: Prisma.StringNullableFilter<"Event"> | string | null
   hasFollowUp?: Prisma.BoolFilter<"Event"> | boolean
   followUpAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   followUpCompleted?: Prisma.BoolFilter<"Event"> | boolean
@@ -348,7 +344,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   timestamp?: Prisma.DateTimeFilter<"Event"> | Date | string
   intensityMethod?: Prisma.StringFilter<"Event"> | string
   intensityValue?: Prisma.IntFilter<"Event"> | number
-  intensityRating?: Prisma.IntNullableFilter<"Event"> | number | null
+  intensityRating?: Prisma.StringNullableFilter<"Event"> | string | null
   hasFollowUp?: Prisma.BoolFilter<"Event"> | boolean
   followUpAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   followUpCompleted?: Prisma.BoolFilter<"Event"> | boolean
@@ -397,7 +393,7 @@ export type EventScalarWhereWithAggregatesInput = {
   timestamp?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   intensityMethod?: Prisma.StringWithAggregatesFilter<"Event"> | string
   intensityValue?: Prisma.IntWithAggregatesFilter<"Event"> | number
-  intensityRating?: Prisma.IntNullableWithAggregatesFilter<"Event"> | number | null
+  intensityRating?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   hasFollowUp?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
   followUpAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   followUpCompleted?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
@@ -415,7 +411,7 @@ export type EventCreateInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -437,7 +433,7 @@ export type EventUncheckedCreateInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -457,7 +453,7 @@ export type EventUpdateInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -479,7 +475,7 @@ export type EventUncheckedUpdateInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -500,7 +496,7 @@ export type EventCreateManyInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -518,7 +514,7 @@ export type EventUpdateManyMutationInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -537,7 +533,7 @@ export type EventUncheckedUpdateManyInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -580,7 +576,6 @@ export type EventCountOrderByAggregateInput = {
 
 export type EventAvgOrderByAggregateInput = {
   intensityValue?: Prisma.SortOrder
-  intensityRating?: Prisma.SortOrder
   version?: Prisma.SortOrder
 }
 
@@ -624,7 +619,6 @@ export type EventMinOrderByAggregateInput = {
 
 export type EventSumOrderByAggregateInput = {
   intensityValue?: Prisma.SortOrder
-  intensityRating?: Prisma.SortOrder
   version?: Prisma.SortOrder
 }
 
@@ -675,14 +669,6 @@ export type EventUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.EventScalarWhereInput | Prisma.EventScalarWhereInput[]
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type EventCreateNestedOneWithoutEventTagsInput = {
   create?: Prisma.XOR<Prisma.EventCreateWithoutEventTagsInput, Prisma.EventUncheckedCreateWithoutEventTagsInput>
   connectOrCreate?: Prisma.EventCreateOrConnectWithoutEventTagsInput
@@ -717,7 +703,7 @@ export type EventCreateWithoutUserInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -737,7 +723,7 @@ export type EventUncheckedCreateWithoutUserInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -787,7 +773,7 @@ export type EventScalarWhereInput = {
   timestamp?: Prisma.DateTimeFilter<"Event"> | Date | string
   intensityMethod?: Prisma.StringFilter<"Event"> | string
   intensityValue?: Prisma.IntFilter<"Event"> | number
-  intensityRating?: Prisma.IntNullableFilter<"Event"> | number | null
+  intensityRating?: Prisma.StringNullableFilter<"Event"> | string | null
   hasFollowUp?: Prisma.BoolFilter<"Event"> | boolean
   followUpAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   followUpCompleted?: Prisma.BoolFilter<"Event"> | boolean
@@ -805,7 +791,7 @@ export type EventCreateWithoutEventTagsInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -826,7 +812,7 @@ export type EventUncheckedCreateWithoutEventTagsInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -861,7 +847,7 @@ export type EventUpdateWithoutEventTagsInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -882,7 +868,7 @@ export type EventUncheckedUpdateWithoutEventTagsInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -901,7 +887,7 @@ export type EventCreateWithoutAttachmentsInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -922,7 +908,7 @@ export type EventUncheckedCreateWithoutAttachmentsInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -957,7 +943,7 @@ export type EventUpdateWithoutAttachmentsInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -978,7 +964,7 @@ export type EventUncheckedUpdateWithoutAttachmentsInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -997,7 +983,7 @@ export type EventCreateManyUserInput = {
   timestamp?: Date | string
   intensityMethod: string
   intensityValue: number
-  intensityRating?: number | null
+  intensityRating?: string | null
   hasFollowUp?: boolean
   followUpAt?: Date | string | null
   followUpCompleted?: boolean
@@ -1015,7 +1001,7 @@ export type EventUpdateWithoutUserInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1035,7 +1021,7 @@ export type EventUncheckedUpdateWithoutUserInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1055,7 +1041,7 @@ export type EventUncheckedUpdateManyWithoutUserInput = {
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
   intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
-  intensityRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
   followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1217,7 +1203,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     timestamp: Date
     intensityMethod: string
     intensityValue: number
-    intensityRating: number | null
+    intensityRating: string | null
     hasFollowUp: boolean
     followUpAt: Date | null
     followUpCompleted: boolean
@@ -1659,7 +1645,7 @@ export interface EventFieldRefs {
   readonly timestamp: Prisma.FieldRef<"Event", 'DateTime'>
   readonly intensityMethod: Prisma.FieldRef<"Event", 'String'>
   readonly intensityValue: Prisma.FieldRef<"Event", 'Int'>
-  readonly intensityRating: Prisma.FieldRef<"Event", 'Int'>
+  readonly intensityRating: Prisma.FieldRef<"Event", 'String'>
   readonly hasFollowUp: Prisma.FieldRef<"Event", 'Boolean'>
   readonly followUpAt: Prisma.FieldRef<"Event", 'DateTime'>
   readonly followUpCompleted: Prisma.FieldRef<"Event", 'Boolean'>

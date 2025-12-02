@@ -112,7 +112,7 @@ model Event {
   // Intensity tracking
   intensityMethod String // 'tap_counter' | 'squeeze' | etc.
   intensityValue  Int // Raw value (tap count, duration, etc.)
-  intensityRating Int? // 1-10 scale (if provided in follow-up)
+  intensityRating String? // 1-10 scale (if provided in follow-up)
 
   // Follow-up status
   hasFollowUp       Boolean   @default(false)
