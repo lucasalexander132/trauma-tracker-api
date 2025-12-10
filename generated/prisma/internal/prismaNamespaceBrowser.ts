@@ -52,6 +52,7 @@ export const ModelName = {
   Session: 'Session',
   UserSettings: 'UserSettings',
   Event: 'Event',
+  Module: 'Module',
   Section: 'Section',
   Tag: 'Tag',
   EventTag: 'EventTag',
@@ -135,6 +136,8 @@ export type UserSettingsScalarFieldEnum = (typeof UserSettingsScalarFieldEnum)[k
 export const EventScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  eventName: 'eventName',
+  entryDescription: 'entryDescription',
   encryptedContent: 'encryptedContent',
   timestamp: 'timestamp',
   intensityMethod: 'intensityMethod',
@@ -152,6 +155,21 @@ export const EventScalarFieldEnum = {
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+export const ModuleScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventId: 'eventId',
+  type: 'type',
+  questionAnswers: 'questionAnswers',
+  exerciseData: 'exerciseData',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ModuleScalarFieldEnum = (typeof ModuleScalarFieldEnum)[keyof typeof ModuleScalarFieldEnum]
 
 
 export const SectionScalarFieldEnum = {

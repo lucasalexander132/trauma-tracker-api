@@ -38,6 +38,7 @@ POST {{host}}/user/entries
 Content-Type: application/json
 
 {
+    "entryDescription": "Today, things were totally tubular",
     "eventTags": [
         {
             "id": "cmidn0mog0002ux9mk02oroox"

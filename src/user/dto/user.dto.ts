@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, ValidateIf } from "class-validator";
 import { Tag } from "generated/prisma/browser";
 
 export type TIntensityMethod = 'color_slider' | undefined;
@@ -10,11 +10,30 @@ export interface IIntensity {
 }
 
 export class AddEntryDTO {
+    @ValidateIf((eventName) => eventName === undefined)
+    @IsString()
+    eventName: string;
+
+    @ValidateIf((entry) => entry === undefined)
+    @IsString()
+    entryDescription: string;
+
     @IsNotEmpty()
     eventTags: { id: string }[];
 
     @IsNotEmpty()
     intensity: IIntensity;
+}
+
+export class AddModuleDTO {
+    @IsString()
+    moduleType: string;
+
+    @IsString()
+    questionAnswers: string;
+
+    @IsString()
+    exerciseData: string;
 }
 
 export class AddTagDTO {

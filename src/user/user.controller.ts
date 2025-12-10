@@ -1,6 +1,6 @@
-import { Body, Controller, Post, Req, Res, UseGuards, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Post, Req, Res, UseGuards, Get, Param, Query, Patch } from '@nestjs/common';
 import { UserService } from './user.service';
-import { AddEntryDTO, AddTagDTO, GetEntriesDTO } from './dto';
+import { AddEntryDTO, AddModuleDTO, AddTagDTO, GetEntriesDTO } from './dto';
 import { JwtRefreshGuard } from 'src/auth/guard';
 import { Response, Request } from 'express';
 
@@ -15,6 +15,7 @@ export class UserController {
         @Res({ passthrough: true }) res: Response,
         @Req() req: Request
     ) {
+        console.log(Object.keys(dto));
         return this.userService.addEntry(dto, res, req);
     }
 
@@ -30,6 +31,17 @@ export class UserController {
             cursor,
             limit
         }, res, req);
+    }
+
+    @Patch('entries/:id/module')
+    @UseGuards(JwtRefreshGuard)
+    patchEntry(
+        @Param('id') id: string,
+        @Body() dto: AddModuleDTO,
+        @Res({ passthrough: true }) res: Response,
+        @Req() req: Request
+    ) {
+        return this.userService.updateJournalWithModule(id, dto, req);
     }
 
     @Get('tags')
@@ -56,4 +68,14 @@ export class UserController {
         @Req() req: Request) {
             return this.userService.getSections(res, req);
         }
+
+    @Get('modules/:eventId')
+    @UseGuards(JwtRefreshGuard)
+    getModulesByEventId(
+        @Param('eventId') eventId: string,
+        @Res({ passthrough: true }) res: Response,
+        @Req() req: Request
+    ) {
+        return this.userService.getModulesByEventId(eventId, res, req);
+    }
 }

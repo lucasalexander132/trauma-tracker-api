@@ -62,6 +62,11 @@ export type UserSettings = Prisma.UserSettingsModel
  */
 export type Event = Prisma.EventModel
 /**
+ * Model Module
+ * 
+ */
+export type Module = Prisma.ModuleModel
+/**
  * Model Section
  * 
  */

@@ -46,6 +46,7 @@ model User {
   resources  UserResource[]
   Section    Section[]
   SectionTag SectionTag[]
+  modules    Module[]
 
   @@index([email])
   @@map("users")
@@ -103,10 +104,12 @@ model Event {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  // Encrypted content blob (E2E encrypted)
-  encryptedContent String @db.Text
+  eventName String?
 
-  // Metadata (unencrypted for querying)
+  entryDescription String?
+
+  encryptedContent String @db.Text // Might update to use encrypted content in the future
+
   timestamp DateTime @default(now())
 
   // Intensity tracking
@@ -133,10 +136,38 @@ model Event {
   // Relations
   eventTags   EventTag[]
   attachments Attachment[]
+  modules     Module[]
 
   @@index([userId, timestamp(sort: Desc)])
   @@index([userId, deletedAt])
   @@map("events")
+}
+
+model Module {
+  id      String @id @default(cuid())
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  type String // 'initialEntry' | 'safety' | 'noticing' | 'coping' | 'addiction'
+
+  questionAnswers Json // Array of {id, question, answer[]}
+  exerciseData    Json // Array of type Exercise = {
+  //     type: ExerciseType;
+  //     id: string;
+  //     exerciseQuestionAnswer: QuestionAnswer;
+  // }
+
+  // Soft delete (for conflict resolution)
+  deletedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([eventId])
+  @@map("modules")
 }
 
 // ============================================

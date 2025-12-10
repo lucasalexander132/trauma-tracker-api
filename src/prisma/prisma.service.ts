@@ -3,15 +3,12 @@ import { ConfigService } from '@nestjs/config';
 import { PrismaClient } from 'generated/prisma/client';
 import { contextTags, emotionTags, traumaResponseTags } from 'src/prisma/seedData/tags';
 import { sections } from 'src/prisma/seedData/sections';
+
 @Injectable()
 export class PrismaService extends PrismaClient {
   constructor(config: ConfigService) {
     super({
-      datasources: {
-        db: {
-          url: config.get('DATABASE_URL'),
-        },
-      },
+      datasourceUrl: config.get('DATABASE_URL'),
     });
   }
 

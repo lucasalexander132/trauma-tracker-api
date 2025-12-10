@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { AddEntryDTO, AddTagDTO, GetEntriesDTO } from './dto';
+import { AddEntryDTO, AddModuleDTO, AddTagDTO, GetEntriesDTO } from './dto';
 import { Response, Request } from 'express';
 import { Event, Section, Tag, User } from 'generated/prisma/client';
 
@@ -25,6 +25,20 @@ export class UserService {
         let entries;
 
         const limit = dto ? dto.limit ?? 10 : 10;
+
+        const entrySelector = {
+            id: true,
+            timestamp: true,
+            hasFollowUp: true,
+            intensityMethod: true,
+            intensityRating: true,
+            intensityValue: true,
+            followUpAt: true,
+            followUpCompleted: true,
+            entryDescription: true,
+            eventName: true,
+            eventTags: true
+        };
         
         if (dto && typeof dto?.cursor !== 'undefined') {
             entries = await this.prisma.event.findMany({
@@ -38,17 +52,7 @@ export class UserService {
                 where: {
                     userId: id
                 },
-                select: {
-                    id: true,
-                    timestamp: true,
-                    hasFollowUp: true,
-                    intensityMethod: true,
-                    intensityRating: true,
-                    intensityValue: true,
-                    followUpAt: true,
-                    followUpCompleted: true,
-                    eventTags: true
-                }
+                select: entrySelector
             });
         } else {
             entries = await this.prisma.event.findMany({
@@ -59,17 +63,7 @@ export class UserService {
                 where: {
                     userId: id
                 },
-                select: {
-                    id: true,
-                    timestamp: true,
-                    hasFollowUp: true,
-                    intensityMethod: true,
-                    intensityRating: true,
-                    intensityValue: true,
-                    followUpAt: true,
-                    followUpCompleted: true,
-                    eventTags: true
-                }
+                select: entrySelector
             });
         }
         if (!entries) return;
@@ -106,6 +100,8 @@ export class UserService {
         const result = await this.prisma.event.create({
             data: {
                 userId: id,
+                eventName: dto.eventName,
+                entryDescription: dto.entryDescription,
                 encryptedContent: '',
                 intensityMethod: dto.intensity.intensityMethod ?? '',
                 intensityValue: dto.intensity.intensityValue,
@@ -126,6 +122,23 @@ export class UserService {
             );
         }
         return result;
+    }
+
+    async updateJournalWithModule(eventId: string, dto: AddModuleDTO, req: Request) {
+        if (!req.user) return;
+        const { id } = req.user as User;
+
+        const module = await this.prisma.module.create({
+            data: {
+                userId: id,
+                eventId: eventId,
+                type: dto.moduleType,
+                questionAnswers: JSON.parse(dto.questionAnswers),
+                exerciseData: JSON.parse(dto.exerciseData)
+            }
+        });
+
+        return module;
     }
 
     async addTag(dto: AddTagDTO, res: Response, req: Request) {
@@ -233,5 +246,31 @@ export class UserService {
             })
         }
         return responseSections;
+    }
+
+    async getModulesByEventId(eventId: string, res: Response, req: Request) {
+        if (!req.user) return;
+        const { id } = req.user as User;
+        const modules = await this.prisma.module.findMany({
+            where: {
+                eventId: eventId,
+                userId: id,
+                deletedAt: null
+            },
+            orderBy: {
+                createdAt: 'asc'
+            },
+            select: {
+                id: true,
+                eventId: true,
+                type: true,
+                questionAnswers: true,
+                exerciseData: true,
+                createdAt: true,
+                updatedAt: true
+            }
+        });
+
+        return modules;
     }
 }

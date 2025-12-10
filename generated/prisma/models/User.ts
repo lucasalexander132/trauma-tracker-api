@@ -269,6 +269,7 @@ export type UserWhereInput = {
   resources?: Prisma.UserResourceListRelationFilter
   Section?: Prisma.SectionListRelationFilter
   SectionTag?: Prisma.SectionTagListRelationFilter
+  modules?: Prisma.ModuleListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -295,6 +296,7 @@ export type UserOrderByWithRelationInput = {
   resources?: Prisma.UserResourceOrderByRelationAggregateInput
   Section?: Prisma.SectionOrderByRelationAggregateInput
   SectionTag?: Prisma.SectionTagOrderByRelationAggregateInput
+  modules?: Prisma.ModuleOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -324,6 +326,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   resources?: Prisma.UserResourceListRelationFilter
   Section?: Prisma.SectionListRelationFilter
   SectionTag?: Prisma.SectionTagListRelationFilter
+  modules?: Prisma.ModuleListRelationFilter
 }, "id" | "username" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -392,6 +395,7 @@ export type UserCreateInput = {
   resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -418,6 +422,7 @@ export type UserUncheckedCreateInput = {
   resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -444,6 +449,7 @@ export type UserUpdateInput = {
   resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -470,6 +476,7 @@ export type UserUncheckedUpdateInput = {
   resources?: Prisma.UserResourceUncheckedUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUncheckedUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -652,6 +659,20 @@ export type UserUpdateOneRequiredWithoutEventsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEventsInput, Prisma.UserUpdateWithoutEventsInput>, Prisma.UserUncheckedUpdateWithoutEventsInput>
 }
 
+export type UserCreateNestedOneWithoutModulesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutModulesInput, Prisma.UserUncheckedCreateWithoutModulesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutModulesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutModulesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutModulesInput, Prisma.UserUncheckedCreateWithoutModulesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutModulesInput
+  upsert?: Prisma.UserUpsertWithoutModulesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutModulesInput, Prisma.UserUpdateWithoutModulesInput>, Prisma.UserUncheckedUpdateWithoutModulesInput>
+}
+
 export type UserCreateNestedOneWithoutSectionInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutSectionInput, Prisma.UserUncheckedCreateWithoutSectionInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutSectionInput
@@ -751,6 +772,7 @@ export type UserCreateWithoutSessionsInput = {
   resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -776,6 +798,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -817,6 +840,7 @@ export type UserUpdateWithoutSessionsInput = {
   resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -842,6 +866,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   resources?: Prisma.UserResourceUncheckedUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUncheckedUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSettingsInput = {
@@ -867,6 +892,7 @@ export type UserCreateWithoutSettingsInput = {
   resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSettingsInput = {
@@ -892,6 +918,7 @@ export type UserUncheckedCreateWithoutSettingsInput = {
   resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSettingsInput = {
@@ -933,6 +960,7 @@ export type UserUpdateWithoutSettingsInput = {
   resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSettingsInput = {
@@ -958,6 +986,7 @@ export type UserUncheckedUpdateWithoutSettingsInput = {
   resources?: Prisma.UserResourceUncheckedUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUncheckedUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutEventsInput = {
@@ -983,6 +1012,7 @@ export type UserCreateWithoutEventsInput = {
   resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEventsInput = {
@@ -1008,6 +1038,7 @@ export type UserUncheckedCreateWithoutEventsInput = {
   resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEventsInput = {
@@ -1049,6 +1080,7 @@ export type UserUpdateWithoutEventsInput = {
   resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEventsInput = {
@@ -1067,6 +1099,127 @@ export type UserUncheckedUpdateWithoutEventsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   oauthProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   oauthId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
+  settings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
+  resources?: Prisma.UserResourceUncheckedUpdateManyWithoutUserNestedInput
+  Section?: Prisma.SectionUncheckedUpdateManyWithoutUserNestedInput
+  SectionTag?: Prisma.SectionTagUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutModulesInput = {
+  id?: string
+  username: string
+  email: string
+  hash: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  refreshToken?: string | null
+  displayName?: string | null
+  timezone?: string
+  locale?: string
+  emailVerified?: boolean
+  isActive?: boolean
+  oauthProvider?: string | null
+  oauthId?: string | null
+  events?: Prisma.EventCreateNestedManyWithoutUserInput
+  tags?: Prisma.TagCreateNestedManyWithoutUserInput
+  settings?: Prisma.UserSettingsCreateNestedOneWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  reports?: Prisma.ReportCreateNestedManyWithoutUserInput
+  resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
+  Section?: Prisma.SectionCreateNestedManyWithoutUserInput
+  SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutModulesInput = {
+  id?: string
+  username: string
+  email: string
+  hash: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  refreshToken?: string | null
+  displayName?: string | null
+  timezone?: string
+  locale?: string
+  emailVerified?: boolean
+  isActive?: boolean
+  oauthProvider?: string | null
+  oauthId?: string | null
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
+  settings?: Prisma.UserSettingsUncheckedCreateNestedOneWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
+  resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
+  Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
+  SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutModulesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutModulesInput, Prisma.UserUncheckedCreateWithoutModulesInput>
+}
+
+export type UserUpsertWithoutModulesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutModulesInput, Prisma.UserUncheckedUpdateWithoutModulesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutModulesInput, Prisma.UserUncheckedCreateWithoutModulesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutModulesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutModulesInput, Prisma.UserUncheckedUpdateWithoutModulesInput>
+}
+
+export type UserUpdateWithoutModulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  hash?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  oauthProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  events?: Prisma.EventUpdateManyWithoutUserNestedInput
+  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
+  settings?: Prisma.UserSettingsUpdateOneWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
+  resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
+  Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
+  SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutModulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  hash?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  locale?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  oauthProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  oauthId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.UserSettingsUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1099,6 +1252,7 @@ export type UserCreateWithoutSectionInput = {
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
   resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSectionInput = {
@@ -1124,6 +1278,7 @@ export type UserUncheckedCreateWithoutSectionInput = {
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
   resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSectionInput = {
@@ -1165,6 +1320,7 @@ export type UserUpdateWithoutSectionInput = {
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
   resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSectionInput = {
@@ -1190,6 +1346,7 @@ export type UserUncheckedUpdateWithoutSectionInput = {
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
   resources?: Prisma.UserResourceUncheckedUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTagsInput = {
@@ -1215,6 +1372,7 @@ export type UserCreateWithoutTagsInput = {
   resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTagsInput = {
@@ -1240,6 +1398,7 @@ export type UserUncheckedCreateWithoutTagsInput = {
   resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTagsInput = {
@@ -1281,6 +1440,7 @@ export type UserUpdateWithoutTagsInput = {
   resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTagsInput = {
@@ -1306,6 +1466,7 @@ export type UserUncheckedUpdateWithoutTagsInput = {
   resources?: Prisma.UserResourceUncheckedUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUncheckedUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSectionTagInput = {
@@ -1331,6 +1492,7 @@ export type UserCreateWithoutSectionTagInput = {
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
   resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSectionTagInput = {
@@ -1356,6 +1518,7 @@ export type UserUncheckedCreateWithoutSectionTagInput = {
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
   resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSectionTagInput = {
@@ -1397,6 +1560,7 @@ export type UserUpdateWithoutSectionTagInput = {
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
   resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSectionTagInput = {
@@ -1422,6 +1586,7 @@ export type UserUncheckedUpdateWithoutSectionTagInput = {
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
   resources?: Prisma.UserResourceUncheckedUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReportsInput = {
@@ -1447,6 +1612,7 @@ export type UserCreateWithoutReportsInput = {
   resources?: Prisma.UserResourceCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReportsInput = {
@@ -1472,6 +1638,7 @@ export type UserUncheckedCreateWithoutReportsInput = {
   resources?: Prisma.UserResourceUncheckedCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReportsInput = {
@@ -1513,6 +1680,7 @@ export type UserUpdateWithoutReportsInput = {
   resources?: Prisma.UserResourceUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReportsInput = {
@@ -1538,6 +1706,7 @@ export type UserUncheckedUpdateWithoutReportsInput = {
   resources?: Prisma.UserResourceUncheckedUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUncheckedUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutResourcesInput = {
@@ -1563,6 +1732,7 @@ export type UserCreateWithoutResourcesInput = {
   reports?: Prisma.ReportCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutResourcesInput = {
@@ -1588,6 +1758,7 @@ export type UserUncheckedCreateWithoutResourcesInput = {
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutUserInput
   Section?: Prisma.SectionUncheckedCreateNestedManyWithoutUserInput
   SectionTag?: Prisma.SectionTagUncheckedCreateNestedManyWithoutUserInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutResourcesInput = {
@@ -1629,6 +1800,7 @@ export type UserUpdateWithoutResourcesInput = {
   reports?: Prisma.ReportUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutResourcesInput = {
@@ -1654,6 +1826,7 @@ export type UserUncheckedUpdateWithoutResourcesInput = {
   reports?: Prisma.ReportUncheckedUpdateManyWithoutUserNestedInput
   Section?: Prisma.SectionUncheckedUpdateManyWithoutUserNestedInput
   SectionTag?: Prisma.SectionTagUncheckedUpdateManyWithoutUserNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1669,6 +1842,7 @@ export type UserCountOutputType = {
   resources: number
   Section: number
   SectionTag: number
+  modules: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1679,6 +1853,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   resources?: boolean | UserCountOutputTypeCountResourcesArgs
   Section?: boolean | UserCountOutputTypeCountSectionArgs
   SectionTag?: boolean | UserCountOutputTypeCountSectionTagArgs
+  modules?: boolean | UserCountOutputTypeCountModulesArgs
 }
 
 /**
@@ -1740,6 +1915,13 @@ export type UserCountOutputTypeCountSectionTagArgs<ExtArgs extends runtime.Types
   where?: Prisma.SectionTagWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountModulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ModuleWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1765,6 +1947,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   resources?: boolean | Prisma.User$resourcesArgs<ExtArgs>
   Section?: boolean | Prisma.User$SectionArgs<ExtArgs>
   SectionTag?: boolean | Prisma.User$SectionTagArgs<ExtArgs>
+  modules?: boolean | Prisma.User$modulesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1832,6 +2015,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   resources?: boolean | Prisma.User$resourcesArgs<ExtArgs>
   Section?: boolean | Prisma.User$SectionArgs<ExtArgs>
   SectionTag?: boolean | Prisma.User$SectionTagArgs<ExtArgs>
+  modules?: boolean | Prisma.User$modulesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1848,6 +2032,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     resources: Prisma.$UserResourcePayload<ExtArgs>[]
     Section: Prisma.$SectionPayload<ExtArgs>[]
     SectionTag: Prisma.$SectionTagPayload<ExtArgs>[]
+    modules: Prisma.$ModulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2267,6 +2452,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   resources<T extends Prisma.User$resourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Section<T extends Prisma.User$SectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$SectionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   SectionTag<T extends Prisma.User$SectionTagArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$SectionTagArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SectionTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  modules<T extends Prisma.User$modulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$modulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2883,6 +3069,30 @@ export type User$SectionTagArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.SectionTagScalarFieldEnum | Prisma.SectionTagScalarFieldEnum[]
+}
+
+/**
+ * User.modules
+ */
+export type User$modulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Module
+   */
+  select?: Prisma.ModuleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Module
+   */
+  omit?: Prisma.ModuleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ModuleInclude<ExtArgs> | null
+  where?: Prisma.ModuleWhereInput
+  orderBy?: Prisma.ModuleOrderByWithRelationInput | Prisma.ModuleOrderByWithRelationInput[]
+  cursor?: Prisma.ModuleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ModuleScalarFieldEnum | Prisma.ModuleScalarFieldEnum[]
 }
 
 /**

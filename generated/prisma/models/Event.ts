@@ -38,6 +38,8 @@ export type EventSumAggregateOutputType = {
 export type EventMinAggregateOutputType = {
   id: string | null
   userId: string | null
+  eventName: string | null
+  entryDescription: string | null
   encryptedContent: string | null
   timestamp: Date | null
   intensityMethod: string | null
@@ -57,6 +59,8 @@ export type EventMinAggregateOutputType = {
 export type EventMaxAggregateOutputType = {
   id: string | null
   userId: string | null
+  eventName: string | null
+  entryDescription: string | null
   encryptedContent: string | null
   timestamp: Date | null
   intensityMethod: string | null
@@ -76,6 +80,8 @@ export type EventMaxAggregateOutputType = {
 export type EventCountAggregateOutputType = {
   id: number
   userId: number
+  eventName: number
+  entryDescription: number
   encryptedContent: number
   timestamp: number
   intensityMethod: number
@@ -107,6 +113,8 @@ export type EventSumAggregateInputType = {
 export type EventMinAggregateInputType = {
   id?: true
   userId?: true
+  eventName?: true
+  entryDescription?: true
   encryptedContent?: true
   timestamp?: true
   intensityMethod?: true
@@ -126,6 +134,8 @@ export type EventMinAggregateInputType = {
 export type EventMaxAggregateInputType = {
   id?: true
   userId?: true
+  eventName?: true
+  entryDescription?: true
   encryptedContent?: true
   timestamp?: true
   intensityMethod?: true
@@ -145,6 +155,8 @@ export type EventMaxAggregateInputType = {
 export type EventCountAggregateInputType = {
   id?: true
   userId?: true
+  eventName?: true
+  entryDescription?: true
   encryptedContent?: true
   timestamp?: true
   intensityMethod?: true
@@ -251,6 +263,8 @@ export type EventGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type EventGroupByOutputType = {
   id: string
   userId: string
+  eventName: string | null
+  entryDescription: string | null
   encryptedContent: string
   timestamp: Date
   intensityMethod: string
@@ -293,6 +307,8 @@ export type EventWhereInput = {
   NOT?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
   id?: Prisma.StringFilter<"Event"> | string
   userId?: Prisma.StringFilter<"Event"> | string
+  eventName?: Prisma.StringNullableFilter<"Event"> | string | null
+  entryDescription?: Prisma.StringNullableFilter<"Event"> | string | null
   encryptedContent?: Prisma.StringFilter<"Event"> | string
   timestamp?: Prisma.DateTimeFilter<"Event"> | Date | string
   intensityMethod?: Prisma.StringFilter<"Event"> | string
@@ -310,11 +326,14 @@ export type EventWhereInput = {
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   eventTags?: Prisma.EventTagListRelationFilter
   attachments?: Prisma.AttachmentListRelationFilter
+  modules?: Prisma.ModuleListRelationFilter
 }
 
 export type EventOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  eventName?: Prisma.SortOrderInput | Prisma.SortOrder
+  entryDescription?: Prisma.SortOrderInput | Prisma.SortOrder
   encryptedContent?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   intensityMethod?: Prisma.SortOrder
@@ -332,6 +351,7 @@ export type EventOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput
   eventTags?: Prisma.EventTagOrderByRelationAggregateInput
   attachments?: Prisma.AttachmentOrderByRelationAggregateInput
+  modules?: Prisma.ModuleOrderByRelationAggregateInput
 }
 
 export type EventWhereUniqueInput = Prisma.AtLeast<{
@@ -340,6 +360,8 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.EventWhereInput[]
   NOT?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
   userId?: Prisma.StringFilter<"Event"> | string
+  eventName?: Prisma.StringNullableFilter<"Event"> | string | null
+  entryDescription?: Prisma.StringNullableFilter<"Event"> | string | null
   encryptedContent?: Prisma.StringFilter<"Event"> | string
   timestamp?: Prisma.DateTimeFilter<"Event"> | Date | string
   intensityMethod?: Prisma.StringFilter<"Event"> | string
@@ -357,11 +379,14 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   eventTags?: Prisma.EventTagListRelationFilter
   attachments?: Prisma.AttachmentListRelationFilter
+  modules?: Prisma.ModuleListRelationFilter
 }, "id">
 
 export type EventOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  eventName?: Prisma.SortOrderInput | Prisma.SortOrder
+  entryDescription?: Prisma.SortOrderInput | Prisma.SortOrder
   encryptedContent?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   intensityMethod?: Prisma.SortOrder
@@ -389,6 +414,8 @@ export type EventScalarWhereWithAggregatesInput = {
   NOT?: Prisma.EventScalarWhereWithAggregatesInput | Prisma.EventScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Event"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Event"> | string
+  eventName?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  entryDescription?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   encryptedContent?: Prisma.StringWithAggregatesFilter<"Event"> | string
   timestamp?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   intensityMethod?: Prisma.StringWithAggregatesFilter<"Event"> | string
@@ -407,6 +434,8 @@ export type EventScalarWhereWithAggregatesInput = {
 
 export type EventCreateInput = {
   id?: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -424,11 +453,14 @@ export type EventCreateInput = {
   user: Prisma.UserCreateNestedOneWithoutEventsInput
   eventTags?: Prisma.EventTagCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateInput = {
   id?: string
   userId: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -445,10 +477,13 @@ export type EventUncheckedCreateInput = {
   updatedAt?: Date | string
   eventTags?: Prisma.EventTagUncheckedCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -466,11 +501,14 @@ export type EventUpdateInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
   eventTags?: Prisma.EventTagUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -487,11 +525,14 @@ export type EventUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   eventTags?: Prisma.EventTagUncheckedUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyInput = {
   id?: string
   userId: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -510,6 +551,8 @@ export type EventCreateManyInput = {
 
 export type EventUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -529,6 +572,8 @@ export type EventUpdateManyMutationInput = {
 export type EventUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -558,6 +603,8 @@ export type EventOrderByRelationAggregateInput = {
 export type EventCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  eventName?: Prisma.SortOrder
+  entryDescription?: Prisma.SortOrder
   encryptedContent?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   intensityMethod?: Prisma.SortOrder
@@ -582,6 +629,8 @@ export type EventAvgOrderByAggregateInput = {
 export type EventMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  eventName?: Prisma.SortOrder
+  entryDescription?: Prisma.SortOrder
   encryptedContent?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   intensityMethod?: Prisma.SortOrder
@@ -601,6 +650,8 @@ export type EventMaxOrderByAggregateInput = {
 export type EventMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  eventName?: Prisma.SortOrder
+  entryDescription?: Prisma.SortOrder
   encryptedContent?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   intensityMethod?: Prisma.SortOrder
@@ -669,6 +720,20 @@ export type EventUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.EventScalarWhereInput | Prisma.EventScalarWhereInput[]
 }
 
+export type EventCreateNestedOneWithoutModulesInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutModulesInput, Prisma.EventUncheckedCreateWithoutModulesInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutModulesInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUpdateOneRequiredWithoutModulesNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutModulesInput, Prisma.EventUncheckedCreateWithoutModulesInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutModulesInput
+  upsert?: Prisma.EventUpsertWithoutModulesInput
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutModulesInput, Prisma.EventUpdateWithoutModulesInput>, Prisma.EventUncheckedUpdateWithoutModulesInput>
+}
+
 export type EventCreateNestedOneWithoutEventTagsInput = {
   create?: Prisma.XOR<Prisma.EventCreateWithoutEventTagsInput, Prisma.EventUncheckedCreateWithoutEventTagsInput>
   connectOrCreate?: Prisma.EventCreateOrConnectWithoutEventTagsInput
@@ -699,6 +764,8 @@ export type EventUpdateOneRequiredWithoutAttachmentsNestedInput = {
 
 export type EventCreateWithoutUserInput = {
   id?: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -715,10 +782,13 @@ export type EventCreateWithoutUserInput = {
   updatedAt?: Date | string
   eventTags?: Prisma.EventTagCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutUserInput = {
   id?: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -735,6 +805,7 @@ export type EventUncheckedCreateWithoutUserInput = {
   updatedAt?: Date | string
   eventTags?: Prisma.EventTagUncheckedCreateNestedManyWithoutEventInput
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutUserInput = {
@@ -769,6 +840,8 @@ export type EventScalarWhereInput = {
   NOT?: Prisma.EventScalarWhereInput | Prisma.EventScalarWhereInput[]
   id?: Prisma.StringFilter<"Event"> | string
   userId?: Prisma.StringFilter<"Event"> | string
+  eventName?: Prisma.StringNullableFilter<"Event"> | string | null
+  entryDescription?: Prisma.StringNullableFilter<"Event"> | string | null
   encryptedContent?: Prisma.StringFilter<"Event"> | string
   timestamp?: Prisma.DateTimeFilter<"Event"> | Date | string
   intensityMethod?: Prisma.StringFilter<"Event"> | string
@@ -785,8 +858,118 @@ export type EventScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
 }
 
+export type EventCreateWithoutModulesInput = {
+  id?: string
+  eventName?: string | null
+  entryDescription?: string | null
+  encryptedContent: string
+  timestamp?: Date | string
+  intensityMethod: string
+  intensityValue: number
+  intensityRating?: string | null
+  hasFollowUp?: boolean
+  followUpAt?: Date | string | null
+  followUpCompleted?: boolean
+  isLocal?: boolean
+  syncedAt?: Date | string | null
+  version?: number
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutEventsInput
+  eventTags?: Prisma.EventTagCreateNestedManyWithoutEventInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+}
+
+export type EventUncheckedCreateWithoutModulesInput = {
+  id?: string
+  userId: string
+  eventName?: string | null
+  entryDescription?: string | null
+  encryptedContent: string
+  timestamp?: Date | string
+  intensityMethod: string
+  intensityValue: number
+  intensityRating?: string | null
+  hasFollowUp?: boolean
+  followUpAt?: Date | string | null
+  followUpCompleted?: boolean
+  isLocal?: boolean
+  syncedAt?: Date | string | null
+  version?: number
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  eventTags?: Prisma.EventTagUncheckedCreateNestedManyWithoutEventInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutModulesInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutModulesInput, Prisma.EventUncheckedCreateWithoutModulesInput>
+}
+
+export type EventUpsertWithoutModulesInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutModulesInput, Prisma.EventUncheckedUpdateWithoutModulesInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutModulesInput, Prisma.EventUncheckedCreateWithoutModulesInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutModulesInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutModulesInput, Prisma.EventUncheckedUpdateWithoutModulesInput>
+}
+
+export type EventUpdateWithoutModulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
+  timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocal?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
+  eventTags?: Prisma.EventTagUpdateManyWithoutEventNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+}
+
+export type EventUncheckedUpdateWithoutModulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
+  timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  intensityValue?: Prisma.IntFieldUpdateOperationsInput | number
+  intensityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasFollowUp?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followUpAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  followUpCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocal?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  syncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  eventTags?: Prisma.EventTagUncheckedUpdateManyWithoutEventNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+}
+
 export type EventCreateWithoutEventTagsInput = {
   id?: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -803,11 +986,14 @@ export type EventCreateWithoutEventTagsInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutEventsInput
   attachments?: Prisma.AttachmentCreateNestedManyWithoutEventInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutEventTagsInput = {
   id?: string
   userId: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -823,6 +1009,7 @@ export type EventUncheckedCreateWithoutEventTagsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutEventInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutEventTagsInput = {
@@ -843,6 +1030,8 @@ export type EventUpdateToOneWithWhereWithoutEventTagsInput = {
 
 export type EventUpdateWithoutEventTagsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -859,11 +1048,14 @@ export type EventUpdateWithoutEventTagsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutEventTagsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -879,10 +1071,13 @@ export type EventUncheckedUpdateWithoutEventTagsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateWithoutAttachmentsInput = {
   id?: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -899,11 +1094,14 @@ export type EventCreateWithoutAttachmentsInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutEventsInput
   eventTags?: Prisma.EventTagCreateNestedManyWithoutEventInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutAttachmentsInput = {
   id?: string
   userId: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -919,6 +1117,7 @@ export type EventUncheckedCreateWithoutAttachmentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   eventTags?: Prisma.EventTagUncheckedCreateNestedManyWithoutEventInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutAttachmentsInput = {
@@ -939,6 +1138,8 @@ export type EventUpdateToOneWithWhereWithoutAttachmentsInput = {
 
 export type EventUpdateWithoutAttachmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -955,11 +1156,14 @@ export type EventUpdateWithoutAttachmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
   eventTags?: Prisma.EventTagUpdateManyWithoutEventNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutAttachmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -975,10 +1179,13 @@ export type EventUncheckedUpdateWithoutAttachmentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   eventTags?: Prisma.EventTagUncheckedUpdateManyWithoutEventNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyUserInput = {
   id?: string
+  eventName?: string | null
+  entryDescription?: string | null
   encryptedContent: string
   timestamp?: Date | string
   intensityMethod: string
@@ -997,6 +1204,8 @@ export type EventCreateManyUserInput = {
 
 export type EventUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1013,10 +1222,13 @@ export type EventUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   eventTags?: Prisma.EventTagUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUpdateManyWithoutEventNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1033,10 +1245,13 @@ export type EventUncheckedUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   eventTags?: Prisma.EventTagUncheckedUpdateManyWithoutEventNestedInput
   attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutEventNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entryDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   encryptedContent?: Prisma.StringFieldUpdateOperationsInput | string
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intensityMethod?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1061,11 +1276,13 @@ export type EventUncheckedUpdateManyWithoutUserInput = {
 export type EventCountOutputType = {
   eventTags: number
   attachments: number
+  modules: number
 }
 
 export type EventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   eventTags?: boolean | EventCountOutputTypeCountEventTagsArgs
   attachments?: boolean | EventCountOutputTypeCountAttachmentsArgs
+  modules?: boolean | EventCountOutputTypeCountModulesArgs
 }
 
 /**
@@ -1092,10 +1309,19 @@ export type EventCountOutputTypeCountAttachmentsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.AttachmentWhereInput
 }
 
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountModulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ModuleWhereInput
+}
+
 
 export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  eventName?: boolean
+  entryDescription?: boolean
   encryptedContent?: boolean
   timestamp?: boolean
   intensityMethod?: boolean
@@ -1113,12 +1339,15 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   eventTags?: boolean | Prisma.Event$eventTagsArgs<ExtArgs>
   attachments?: boolean | Prisma.Event$attachmentsArgs<ExtArgs>
+  modules?: boolean | Prisma.Event$modulesArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
 export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  eventName?: boolean
+  entryDescription?: boolean
   encryptedContent?: boolean
   timestamp?: boolean
   intensityMethod?: boolean
@@ -1139,6 +1368,8 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  eventName?: boolean
+  entryDescription?: boolean
   encryptedContent?: boolean
   timestamp?: boolean
   intensityMethod?: boolean
@@ -1159,6 +1390,8 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type EventSelectScalar = {
   id?: boolean
   userId?: boolean
+  eventName?: boolean
+  entryDescription?: boolean
   encryptedContent?: boolean
   timestamp?: boolean
   intensityMethod?: boolean
@@ -1175,11 +1408,12 @@ export type EventSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "encryptedContent" | "timestamp" | "intensityMethod" | "intensityValue" | "intensityRating" | "hasFollowUp" | "followUpAt" | "followUpCompleted" | "isLocal" | "syncedAt" | "version" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "eventName" | "entryDescription" | "encryptedContent" | "timestamp" | "intensityMethod" | "intensityValue" | "intensityRating" | "hasFollowUp" | "followUpAt" | "followUpCompleted" | "isLocal" | "syncedAt" | "version" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   eventTags?: boolean | Prisma.Event$eventTagsArgs<ExtArgs>
   attachments?: boolean | Prisma.Event$attachmentsArgs<ExtArgs>
+  modules?: boolean | Prisma.Event$modulesArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1195,10 +1429,13 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     user: Prisma.$UserPayload<ExtArgs>
     eventTags: Prisma.$EventTagPayload<ExtArgs>[]
     attachments: Prisma.$AttachmentPayload<ExtArgs>[]
+    modules: Prisma.$ModulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
+    eventName: string | null
+    entryDescription: string | null
     encryptedContent: string
     timestamp: Date
     intensityMethod: string
@@ -1610,6 +1847,7 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   eventTags<T extends Prisma.Event$eventTagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$eventTagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attachments<T extends Prisma.Event$attachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  modules<T extends Prisma.Event$modulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$modulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1641,6 +1879,8 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface EventFieldRefs {
   readonly id: Prisma.FieldRef<"Event", 'String'>
   readonly userId: Prisma.FieldRef<"Event", 'String'>
+  readonly eventName: Prisma.FieldRef<"Event", 'String'>
+  readonly entryDescription: Prisma.FieldRef<"Event", 'String'>
   readonly encryptedContent: Prisma.FieldRef<"Event", 'String'>
   readonly timestamp: Prisma.FieldRef<"Event", 'DateTime'>
   readonly intensityMethod: Prisma.FieldRef<"Event", 'String'>
@@ -2096,6 +2336,30 @@ export type Event$attachmentsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.AttachmentScalarFieldEnum | Prisma.AttachmentScalarFieldEnum[]
+}
+
+/**
+ * Event.modules
+ */
+export type Event$modulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Module
+   */
+  select?: Prisma.ModuleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Module
+   */
+  omit?: Prisma.ModuleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ModuleInclude<ExtArgs> | null
+  where?: Prisma.ModuleWhereInput
+  orderBy?: Prisma.ModuleOrderByWithRelationInput | Prisma.ModuleOrderByWithRelationInput[]
+  cursor?: Prisma.ModuleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ModuleScalarFieldEnum | Prisma.ModuleScalarFieldEnum[]
 }
 
 /**
